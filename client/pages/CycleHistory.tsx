@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { 
-  Archive, 
+import { useState } from "react";
+import {
+  Archive,
   Clock,
   TrendingUp,
   Download,
@@ -9,21 +9,27 @@ import {
   Fish,
   Scale,
   DollarSign,
-  BarChart3
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from '@/components/ui/table'
+  BarChart3,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import {
   Dialog,
   DialogContent,
@@ -32,27 +38,27 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
-import { 
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Progress } from '@/components/ui/progress'
+} from "@/components/ui/select";
+import { Progress } from "@/components/ui/progress";
 
 export default function CycleHistory() {
-  const [isCloseCycleOpen, setIsCloseCycleOpen] = useState(false)
-  const [searchTerm, setSearchTerm] = useState('')
+  const [isCloseCycleOpen, setIsCloseCycleOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const activeCycles = [
     {
-      id: 'LT-2024-001',
-      nursery: 'Viveiro A-1',
-      farm: 'Fazenda São João',
-      startDate: '2023-10-15',
+      id: "LT-2024-001",
+      nursery: "Viveiro A-1",
+      farm: "Fazenda São João",
+      startDate: "2023-10-15",
       currentDay: 92,
       estimatedDays: 120,
       initialPopulation: 150000,
@@ -60,14 +66,14 @@ export default function CycleHistory() {
       initialWeight: 0.8,
       currentWeight: 16.8,
       biomass: 2495,
-      status: 'Em Cultivo',
-      performance: 85
+      status: "Em Cultivo",
+      performance: 85,
     },
     {
-      id: 'LT-2024-002',
-      nursery: 'Viveiro B-1',
-      farm: 'Fazenda Santa Maria',
-      startDate: '2023-09-20',
+      id: "LT-2024-002",
+      nursery: "Viveiro B-1",
+      farm: "Fazenda Santa Maria",
+      startDate: "2023-09-20",
       currentDay: 117,
       estimatedDays: 125,
       initialPopulation: 180000,
@@ -75,14 +81,14 @@ export default function CycleHistory() {
       initialWeight: 0.9,
       currentWeight: 28.3,
       biomass: 4959,
-      status: 'Pré-despesca',
-      performance: 92
+      status: "Pré-despesca",
+      performance: 92,
     },
     {
-      id: 'LT-2024-003',
-      nursery: 'Viveiro A-2',
-      farm: 'Fazenda São João',
-      startDate: '2023-11-28',
+      id: "LT-2024-003",
+      nursery: "Viveiro A-2",
+      farm: "Fazenda São João",
+      startDate: "2023-11-28",
       currentDay: 48,
       estimatedDays: 110,
       initialPopulation: 120000,
@@ -90,18 +96,18 @@ export default function CycleHistory() {
       initialWeight: 0.7,
       currentWeight: 12.4,
       biomass: 1185,
-      status: 'Em Cultivo',
-      performance: 78
-    }
-  ]
+      status: "Em Cultivo",
+      performance: 78,
+    },
+  ];
 
   const closedCycles = [
     {
-      id: 'LT-2023-098',
-      nursery: 'Viveiro C-2',
-      farm: 'Fazenda Boa Vista',
-      startDate: '2023-06-10',
-      endDate: '2023-11-15',
+      id: "LT-2023-098",
+      nursery: "Viveiro C-2",
+      farm: "Fazenda Boa Vista",
+      startDate: "2023-06-10",
+      endDate: "2023-11-15",
       duration: 158,
       initialPopulation: 160000,
       finalPopulation: 152800,
@@ -109,17 +115,17 @@ export default function CycleHistory() {
       initialWeight: 0.8,
       finalWeight: 32.5,
       totalHarvest: 4966,
-      averagePrice: 28.50,
+      averagePrice: 28.5,
       revenue: 141530,
       performance: 94,
-      status: 'Finalizado'
+      status: "Finalizado",
     },
     {
-      id: 'LT-2023-097',
-      nursery: 'Viveiro A-3',
-      farm: 'Fazenda São João',
-      startDate: '2023-05-20',
-      endDate: '2023-10-25',
+      id: "LT-2023-097",
+      nursery: "Viveiro A-3",
+      farm: "Fazenda São João",
+      startDate: "2023-05-20",
+      endDate: "2023-10-25",
       duration: 158,
       initialPopulation: 140000,
       finalPopulation: 134600,
@@ -127,17 +133,17 @@ export default function CycleHistory() {
       initialWeight: 0.9,
       finalWeight: 30.2,
       totalHarvest: 4065,
-      averagePrice: 26.80,
+      averagePrice: 26.8,
       revenue: 108942,
       performance: 89,
-      status: 'Finalizado'
+      status: "Finalizado",
     },
     {
-      id: 'LT-2023-096',
-      nursery: 'Viveiro B-2',
-      farm: 'Fazenda Santa Maria',
-      startDate: '2023-04-15',
-      endDate: '2023-09-20',
+      id: "LT-2023-096",
+      nursery: "Viveiro B-2",
+      farm: "Fazenda Santa Maria",
+      startDate: "2023-04-15",
+      endDate: "2023-09-20",
       duration: 158,
       initialPopulation: 170000,
       finalPopulation: 159650,
@@ -145,12 +151,12 @@ export default function CycleHistory() {
       initialWeight: 0.8,
       finalWeight: 28.8,
       totalHarvest: 4598,
-      averagePrice: 27.20,
+      averagePrice: 27.2,
       revenue: 125066,
       performance: 91,
-      status: 'Finalizado'
-    }
-  ]
+      status: "Finalizado",
+    },
+  ];
 
   const performanceMetrics = {
     totalCycles: 48,
@@ -158,40 +164,45 @@ export default function CycleHistory() {
     averageSurvival: 94.2,
     averageWeight: 29.8,
     totalProduction: 186.5, // tons
-    averagePerformance: 89
-  }
+    averagePerformance: 89,
+  };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'Em Cultivo':
-        return <Badge className="bg-blue-100 text-blue-800">{status}</Badge>
-      case 'Pré-despesca':
-        return <Badge className="bg-yellow-100 text-yellow-800">{status}</Badge>
-      case 'Finalizado':
-        return <Badge className="bg-green-100 text-green-800">{status}</Badge>
+      case "Em Cultivo":
+        return <Badge className="bg-blue-100 text-blue-800">{status}</Badge>;
+      case "Pré-despesca":
+        return (
+          <Badge className="bg-yellow-100 text-yellow-800">{status}</Badge>
+        );
+      case "Finalizado":
+        return <Badge className="bg-green-100 text-green-800">{status}</Badge>;
       default:
-        return <Badge variant="outline">{status}</Badge>
+        return <Badge variant="outline">{status}</Badge>;
     }
-  }
+  };
 
   const getPerformanceColor = (performance: number) => {
-    if (performance >= 90) return 'text-green-600'
-    if (performance >= 80) return 'text-blue-600'
-    if (performance >= 70) return 'text-yellow-600'
-    return 'text-red-600'
-  }
+    if (performance >= 90) return "text-green-600";
+    if (performance >= 80) return "text-blue-600";
+    if (performance >= 70) return "text-yellow-600";
+    return "text-red-600";
+  };
 
-  const filteredClosedCycles = closedCycles.filter(cycle =>
-    cycle.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    cycle.nursery.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const filteredClosedCycles = closedCycles.filter(
+    (cycle) =>
+      cycle.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      cycle.nursery.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Fechamento de Ciclo e Histórico</h1>
+          <h1 className="text-2xl font-bold text-foreground">
+            Fechamento de Ciclo e Histórico
+          </h1>
           <p className="text-muted-foreground">
             Gestão de despesca, arquivo de dados e histórico de lotes
           </p>
@@ -220,38 +231,60 @@ export default function CycleHistory() {
                         <SelectValue placeholder="Selecione o lote" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="lt1">LT-2024-001 (Viveiro A-1)</SelectItem>
-                        <SelectItem value="lt2">LT-2024-002 (Viveiro B-1)</SelectItem>
+                        <SelectItem value="lt1">
+                          LT-2024-001 (Viveiro A-1)
+                        </SelectItem>
+                        <SelectItem value="lt2">
+                          LT-2024-002 (Viveiro B-1)
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="harvest-date">Data da Despesca</Label>
-                    <Input 
-                      id="harvest-date" 
-                      type="date" 
-                      defaultValue={new Date().toISOString().split('T')[0]} 
+                    <Input
+                      id="harvest-date"
+                      type="date"
+                      defaultValue={new Date().toISOString().split("T")[0]}
                     />
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="grid gap-2">
                     <Label htmlFor="final-population">População Final</Label>
-                    <Input id="final-population" placeholder="148500" type="number" />
+                    <Input
+                      id="final-population"
+                      placeholder="148500"
+                      type="number"
+                    />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="final-weight">Peso Final Médio (g)</Label>
-                    <Input id="final-weight" placeholder="35.2" step="0.1" type="number" />
+                    <Input
+                      id="final-weight"
+                      placeholder="35.2"
+                      step="0.1"
+                      type="number"
+                    />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="total-harvest">Total Despescado (kg)</Label>
-                    <Input id="total-harvest" placeholder="5224" type="number" />
+                    <Input
+                      id="total-harvest"
+                      placeholder="5224"
+                      type="number"
+                    />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="grid gap-2">
                     <Label htmlFor="sale-price">Preço de Venda (R$/kg)</Label>
-                    <Input id="sale-price" placeholder="28.50" step="0.01" type="number" />
+                    <Input
+                      id="sale-price"
+                      placeholder="28.50"
+                      step="0.01"
+                      type="number"
+                    />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="buyer">Comprador</Label>
@@ -260,7 +293,10 @@ export default function CycleHistory() {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" onClick={() => setIsCloseCycleOpen(false)}>
+                <Button
+                  type="submit"
+                  onClick={() => setIsCloseCycleOpen(false)}
+                >
                   Finalizar Ciclo
                 </Button>
               </DialogFooter>
@@ -277,11 +313,15 @@ export default function CycleHistory() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Ciclos Realizados</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Ciclos Realizados
+            </CardTitle>
             <Archive className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{performanceMetrics.totalCycles}</div>
+            <div className="text-2xl font-bold">
+              {performanceMetrics.totalCycles}
+            </div>
             <p className="text-xs text-muted-foreground">
               Duração média: {performanceMetrics.averageDuration} dias
             </p>
@@ -289,11 +329,15 @@ export default function CycleHistory() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Sobrevivência Média</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Sobrevivência Média
+            </CardTitle>
             <Fish className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{performanceMetrics.averageSurvival}%</div>
+            <div className="text-2xl font-bold">
+              {performanceMetrics.averageSurvival}%
+            </div>
             <p className="text-xs text-muted-foreground">
               Peso final: {performanceMetrics.averageWeight}g
             </p>
@@ -301,23 +345,29 @@ export default function CycleHistory() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Produção Total</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Produção Total
+            </CardTitle>
             <Scale className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{performanceMetrics.totalProduction} ton</div>
-            <p className="text-xs text-muted-foreground">
-              Últimos 12 meses
-            </p>
+            <div className="text-2xl font-bold">
+              {performanceMetrics.totalProduction} ton
+            </div>
+            <p className="text-xs text-muted-foreground">Últimos 12 meses</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Performance Geral</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Performance Geral
+            </CardTitle>
             <BarChart3 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{performanceMetrics.averagePerformance}%</div>
+            <div className="text-2xl font-bold">
+              {performanceMetrics.averagePerformance}%
+            </div>
             <p className="text-xs text-muted-foreground">
               Índice de eficiência
             </p>
@@ -359,47 +409,83 @@ export default function CycleHistory() {
                       </div>
                       <div className="flex items-center gap-2">
                         {getStatusBadge(cycle.status)}
-                        <span className={`text-sm font-medium ${getPerformanceColor(cycle.performance)}`}>
+                        <span
+                          className={`text-sm font-medium ${getPerformanceColor(cycle.performance)}`}
+                        >
                           {cycle.performance}% performance
                         </span>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
                       <div>
-                        <p className="text-sm text-muted-foreground">Dias de Cultivo</p>
-                        <p className="font-medium">{cycle.currentDay}/{cycle.estimatedDays}</p>
+                        <p className="text-sm text-muted-foreground">
+                          Dias de Cultivo
+                        </p>
+                        <p className="font-medium">
+                          {cycle.currentDay}/{cycle.estimatedDays}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">População</p>
-                        <p className="font-medium">{cycle.currentPopulation.toLocaleString()}</p>
+                        <p className="text-sm text-muted-foreground">
+                          População
+                        </p>
+                        <p className="font-medium">
+                          {cycle.currentPopulation.toLocaleString()}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Peso Médio</p>
+                        <p className="text-sm text-muted-foreground">
+                          Peso Médio
+                        </p>
                         <p className="font-medium">{cycle.currentWeight}g</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Biomassa</p>
-                        <p className="font-medium">{cycle.biomass.toLocaleString()}kg</p>
+                        <p className="text-sm text-muted-foreground">
+                          Biomassa
+                        </p>
+                        <p className="font-medium">
+                          {cycle.biomass.toLocaleString()}kg
+                        </p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Sobrevivência</p>
+                        <p className="text-sm text-muted-foreground">
+                          Sobrevivência
+                        </p>
                         <p className="font-medium">
-                          {((cycle.currentPopulation / cycle.initialPopulation) * 100).toFixed(1)}%
+                          {(
+                            (cycle.currentPopulation /
+                              cycle.initialPopulation) *
+                            100
+                          ).toFixed(1)}
+                          %
                         </p>
                       </div>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span>Progresso do ciclo</span>
-                        <span>{Math.round((cycle.currentDay / cycle.estimatedDays) * 100)}%</span>
+                        <span>
+                          {Math.round(
+                            (cycle.currentDay / cycle.estimatedDays) * 100,
+                          )}
+                          %
+                        </span>
                       </div>
-                      <Progress value={(cycle.currentDay / cycle.estimatedDays) * 100} className="h-2" />
+                      <Progress
+                        value={(cycle.currentDay / cycle.estimatedDays) * 100}
+                        className="h-2"
+                      />
                       <div className="flex justify-between text-xs text-muted-foreground">
                         <span>Início: {cycle.startDate}</span>
                         <span>
-                          Previsão de despesca: {
-                            new Date(new Date(cycle.startDate).getTime() + cycle.estimatedDays * 24 * 60 * 60 * 1000)
-                              .toISOString().split('T')[0]
+                          Previsão de despesca:{" "}
+                          {
+                            new Date(
+                              new Date(cycle.startDate).getTime() +
+                                cycle.estimatedDays * 24 * 60 * 60 * 1000,
+                            )
+                              .toISOString()
+                              .split("T")[0]
                           }
                         </span>
                       </div>
@@ -454,21 +540,29 @@ export default function CycleHistory() {
                       <TableCell>
                         <div>
                           <p className="font-medium">{cycle.nursery}</p>
-                          <p className="text-xs text-muted-foreground">{cycle.farm}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {cycle.farm}
+                          </p>
                         </div>
                       </TableCell>
                       <TableCell className="text-sm">
                         {cycle.startDate} a {cycle.endDate}
                       </TableCell>
                       <TableCell>{cycle.duration} dias</TableCell>
-                      <TableCell className="font-medium">{cycle.survivalRate}%</TableCell>
+                      <TableCell className="font-medium">
+                        {cycle.survivalRate}%
+                      </TableCell>
                       <TableCell>{cycle.finalWeight}g</TableCell>
-                      <TableCell>{cycle.totalHarvest.toLocaleString()}kg</TableCell>
+                      <TableCell>
+                        {cycle.totalHarvest.toLocaleString()}kg
+                      </TableCell>
                       <TableCell className="text-green-600 font-medium">
                         R$ {cycle.revenue.toLocaleString()}
                       </TableCell>
                       <TableCell>
-                        <span className={getPerformanceColor(cycle.performance)}>
+                        <span
+                          className={getPerformanceColor(cycle.performance)}
+                        >
                           {cycle.performance}%
                         </span>
                       </TableCell>
@@ -567,5 +661,5 @@ export default function CycleHistory() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

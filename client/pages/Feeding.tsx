@@ -1,7 +1,7 @@
-import { useState } from "react";
-import {
-  Utensils,
-  Clock,
+import { useState } from 'react'
+import { 
+  Utensils, 
+  Clock, 
   Calendar,
   Calculator,
   TrendingUp,
@@ -12,27 +12,21 @@ import {
   Edit,
   Play,
   Pause,
-  RefreshCw,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+  RefreshCw
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Badge } from '@/components/ui/badge'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableHead, 
+  TableHeader, 
+  TableRow 
+} from '@/components/ui/table'
 import {
   Dialog,
   DialogContent,
@@ -41,219 +35,212 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import {
+} from '@/components/ui/dialog'
+import { Label } from '@/components/ui/label'
+import { 
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Progress } from "@/components/ui/progress";
+} from '@/components/ui/select'
+import { Progress } from '@/components/ui/progress'
 
 export default function Feeding() {
-  const [isAddPlanOpen, setIsAddPlanOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(
-    new Date().toISOString().split("T")[0],
-  );
+  const [isAddPlanOpen, setIsAddPlanOpen] = useState(false)
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0])
 
   const feedingPlans = [
     {
       id: 1,
-      name: "Plano Padrão - Juvenil",
-      nursery: "Viveiro A-1",
-      farm: "Fazenda São João",
-      feedType: "Ração 35% Proteína",
+      name: 'Plano Padrão - Juvenil',
+      nursery: 'Viveiro A-1',
+      farm: 'Fazenda São João',
+      feedType: 'Ração 35% Proteína',
       feedingsPerDay: 4,
       biomass: 2450, // kg
       averageWeight: 16.5, // g
-      status: "Ativo",
-      lastFeeding: "14:30",
-      nextFeeding: "18:00",
+      status: 'Ativo',
+      lastFeeding: '14:30',
+      nextFeeding: '18:00'
     },
     {
       id: 2,
-      name: "Plano Intensivo - Engorda",
-      nursery: "Viveiro B-1",
-      farm: "Fazenda Santa Maria",
-      feedType: "Ração 32% Proteína",
+      name: 'Plano Intensivo - Engorda',
+      nursery: 'Viveiro B-1',
+      farm: 'Fazenda Santa Maria',
+      feedType: 'Ração 32% Proteína',
       feedingsPerDay: 3,
       biomass: 3820, // kg
       averageWeight: 28.2, // g
-      status: "Ativo",
-      lastFeeding: "12:00",
-      nextFeeding: "17:00",
+      status: 'Ativo',
+      lastFeeding: '12:00',
+      nextFeeding: '17:00'
     },
     {
       id: 3,
-      name: "Plano Reduzido - Pré-despesca",
-      nursery: "Viveiro C-2",
-      farm: "Fazenda Boa Vista",
-      feedType: "Ração 30% Proteína",
+      name: 'Plano Reduzido - Pré-despesca',
+      nursery: 'Viveiro C-2',
+      farm: 'Fazenda Boa Vista',
+      feedType: 'Ração 30% Proteína',
       feedingsPerDay: 2,
       biomass: 4150, // kg
       averageWeight: 35.8, // g
-      status: "Pausado",
-      lastFeeding: "08:00",
-      nextFeeding: "16:00",
-    },
-  ];
+      status: 'Pausado',
+      lastFeeding: '08:00',
+      nextFeeding: '16:00'
+    }
+  ]
 
   const dailyFeedings = [
     {
       id: 1,
-      time: "06:00",
-      nursery: "Viveiro A-1",
+      time: '06:00',
+      nursery: 'Viveiro A-1',
       plannedAmount: 24.5, // kg
       actualAmount: 24.2, // kg
-      status: "Executado",
+      status: 'Executado',
       operatorConfirmed: true,
-      operator: "Maria Santos",
-      notes: "",
+      operator: 'Maria Santos',
+      notes: ''
     },
     {
       id: 2,
-      time: "10:00",
-      nursery: "Viveiro A-1",
+      time: '10:00',
+      nursery: 'Viveiro A-1',
       plannedAmount: 24.5,
       actualAmount: 24.5,
-      status: "Executado",
+      status: 'Executado',
       operatorConfirmed: true,
-      operator: "João Silva",
-      notes: "",
+      operator: 'João Silva',
+      notes: ''
     },
     {
       id: 3,
-      time: "14:30",
-      nursery: "Viveiro A-1",
+      time: '14:30',
+      nursery: 'Viveiro A-1',
       plannedAmount: 24.5,
       actualAmount: 23.8,
-      status: "Executado",
+      status: 'Executado',
       operatorConfirmed: true,
-      operator: "Maria Santos",
-      notes: "Reduzido por baixo consumo",
+      operator: 'Maria Santos',
+      notes: 'Reduzido por baixo consumo'
     },
     {
       id: 4,
-      time: "18:00",
-      nursery: "Viveiro A-1",
+      time: '18:00',
+      nursery: 'Viveiro A-1',
       plannedAmount: 24.5,
       actualAmount: null,
-      status: "Pendente",
+      status: 'Pendente',
       operatorConfirmed: false,
       operator: null,
-      notes: "",
+      notes: ''
     },
     {
       id: 5,
-      time: "07:00",
-      nursery: "Viveiro B-1",
+      time: '07:00',
+      nursery: 'Viveiro B-1',
       plannedAmount: 38.2,
       actualAmount: 38.2,
-      status: "Executado",
+      status: 'Executado',
       operatorConfirmed: true,
-      operator: "Pedro Costa",
-      notes: "",
+      operator: 'Pedro Costa',
+      notes: ''
     },
     {
       id: 6,
-      time: "12:00",
-      nursery: "Viveiro B-1",
+      time: '12:00',
+      nursery: 'Viveiro B-1',
       plannedAmount: 38.2,
       actualAmount: 38.2,
-      status: "Executado",
+      status: 'Executado',
       operatorConfirmed: true,
-      operator: "Pedro Costa",
-      notes: "",
+      operator: 'Pedro Costa',
+      notes: ''
     },
     {
       id: 7,
-      time: "17:00",
-      nursery: "Viveiro B-1",
+      time: '17:00',
+      nursery: 'Viveiro B-1',
       plannedAmount: 38.2,
       actualAmount: null,
-      status: "Pendente",
+      status: 'Pendente',
       operatorConfirmed: false,
       operator: null,
-      notes: "",
-    },
-  ];
+      notes: ''
+    }
+  ]
 
   const stockIntegration = [
     {
-      feedType: "Ração 35% Proteína",
+      feedType: 'Ração 35% Proteína',
       currentStock: 2850, // kg
       dailyConsumption: 98, // kg
       daysRemaining: 29,
-      status: "Normal",
+      status: 'Normal'
     },
     {
-      feedType: "Ração 32% Proteína",
+      feedType: 'Ração 32% Proteína',
       currentStock: 1240, // kg
       dailyConsumption: 115, // kg
       daysRemaining: 11,
-      status: "Baixo",
+      status: 'Baixo'
     },
     {
-      feedType: "Ração 30% Proteína",
+      feedType: 'Ração 30% Proteína',
       currentStock: 890, // kg
       dailyConsumption: 83, // kg
       daysRemaining: 11,
-      status: "Baixo",
-    },
-  ];
+      status: 'Baixo'
+    }
+  ]
 
   const calculateFeedAmount = (biomass: number, averageWeight: number) => {
     // Simplified feeding rate calculation based on weight
-    let feedingRate = 0.03; // 3% default
-    if (averageWeight < 10)
-      feedingRate = 0.05; // 5% for small fish
-    else if (averageWeight < 20)
-      feedingRate = 0.04; // 4% for medium fish
-    else if (averageWeight < 30)
-      feedingRate = 0.03; // 3% for large fish
-    else feedingRate = 0.025; // 2.5% for very large fish
-
-    return biomass * feedingRate;
-  };
+    let feedingRate = 0.03 // 3% default
+    if (averageWeight < 10) feedingRate = 0.05 // 5% for small fish
+    else if (averageWeight < 20) feedingRate = 0.04 // 4% for medium fish
+    else if (averageWeight < 30) feedingRate = 0.03 // 3% for large fish
+    else feedingRate = 0.025 // 2.5% for very large fish
+    
+    return biomass * feedingRate
+  }
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "Ativo":
-        return <Badge className="bg-green-100 text-green-800">{status}</Badge>;
-      case "Pausado":
-        return <Badge variant="secondary">{status}</Badge>;
-      case "Executado":
-        return <Badge className="bg-blue-100 text-blue-800">{status}</Badge>;
-      case "Pendente":
-        return <Badge variant="outline">{status}</Badge>;
+      case 'Ativo':
+        return <Badge className="bg-green-100 text-green-800">{status}</Badge>
+      case 'Pausado':
+        return <Badge variant="secondary">{status}</Badge>
+      case 'Executado':
+        return <Badge className="bg-blue-100 text-blue-800">{status}</Badge>
+      case 'Pendente':
+        return <Badge variant="outline">{status}</Badge>
       default:
-        return <Badge variant="outline">{status}</Badge>;
+        return <Badge variant="outline">{status}</Badge>
     }
-  };
+  }
 
   const getStockStatus = (status: string) => {
     switch (status) {
-      case "Normal":
-        return <Badge className="bg-green-100 text-green-800">{status}</Badge>;
-      case "Baixo":
-        return <Badge variant="destructive">{status}</Badge>;
-      case "Crítico":
-        return <Badge className="bg-red-100 text-red-800">{status}</Badge>;
+      case 'Normal':
+        return <Badge className="bg-green-100 text-green-800">{status}</Badge>
+      case 'Baixo':
+        return <Badge variant="destructive">{status}</Badge>
+      case 'Crítico':
+        return <Badge className="bg-red-100 text-red-800">{status}</Badge>
       default:
-        return <Badge variant="outline">{status}</Badge>;
+        return <Badge variant="outline">{status}</Badge>
     }
-  };
+  }
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">
-            Arraçoamento Automatizado
-          </h1>
+          <h1 className="text-2xl font-bold text-foreground">Arraçoamento Automatizado</h1>
           <p className="text-muted-foreground">
             Configuração de planos, cálculos automáticos e painel diário
           </p>
@@ -352,7 +339,7 @@ export default function Feeding() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Planos Ativos</CardTitle>
@@ -360,31 +347,33 @@ export default function Feeding() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">2</div>
-            <p className="text-xs text-muted-foreground">1 pausado</p>
+            <p className="text-xs text-muted-foreground">
+              1 pausado
+            </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Consumo Diário
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Consumo Diário</CardTitle>
             <Utensils className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">296 kg</div>
-            <p className="text-xs text-muted-foreground">+12% vs ontem</p>
+            <p className="text-xs text-muted-foreground">
+              +12% vs ontem
+            </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Refeições Hoje
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Refeições Hoje</CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">5/7</div>
-            <p className="text-xs text-muted-foreground">2 pendentes</p>
+            <p className="text-xs text-muted-foreground">
+              2 pendentes
+            </p>
           </CardContent>
         </Card>
         <Card>
@@ -394,7 +383,9 @@ export default function Feeding() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">97%</div>
-            <p className="text-xs text-muted-foreground">Taxa de execução</p>
+            <p className="text-xs text-muted-foreground">
+              Taxa de execução
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -431,26 +422,19 @@ export default function Feeding() {
                 </TableHeader>
                 <TableBody>
                   {feedingPlans.map((plan) => {
-                    const dailyAmount = calculateFeedAmount(
-                      plan.biomass,
-                      plan.averageWeight,
-                    );
-                    const perFeedingAmount = dailyAmount / plan.feedingsPerDay;
-
+                    const dailyAmount = calculateFeedAmount(plan.biomass, plan.averageWeight)
+                    const perFeedingAmount = dailyAmount / plan.feedingsPerDay
+                    
                     return (
                       <TableRow key={plan.id}>
                         <TableCell>
                           <div>
                             <p className="font-medium">{plan.name}</p>
-                            <p className="text-xs text-muted-foreground">
-                              {plan.farm}
-                            </p>
+                            <p className="text-xs text-muted-foreground">{plan.farm}</p>
                           </div>
                         </TableCell>
                         <TableCell>{plan.nursery}</TableCell>
-                        <TableCell className="text-sm">
-                          {plan.feedType}
-                        </TableCell>
+                        <TableCell className="text-sm">{plan.feedType}</TableCell>
                         <TableCell>
                           <div className="text-sm">
                             <p>{plan.biomass.toLocaleString()} kg</p>
@@ -467,26 +451,22 @@ export default function Feeding() {
                             </p>
                           </div>
                         </TableCell>
-                        <TableCell className="text-sm">
-                          {plan.nextFeeding}
+                        <TableCell className="text-sm">{plan.nextFeeding}</TableCell>
+                        <TableCell>
+                          {getStatusBadge(plan.status)}
                         </TableCell>
-                        <TableCell>{getStatusBadge(plan.status)}</TableCell>
                         <TableCell>
                           <div className="flex gap-1">
                             <Button variant="ghost" size="sm">
                               <Edit className="h-3 w-3" />
                             </Button>
                             <Button variant="ghost" size="sm">
-                              {plan.status === "Ativo" ? (
-                                <Pause className="h-3 w-3" />
-                              ) : (
-                                <Play className="h-3 w-3" />
-                              )}
+                              {plan.status === 'Ativo' ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
                             </Button>
                           </div>
                         </TableCell>
                       </TableRow>
-                    );
+                    )
                   })}
                 </TableBody>
               </Table>
@@ -533,9 +513,7 @@ export default function Feeding() {
                 <TableBody>
                   {dailyFeedings.map((feeding) => (
                     <TableRow key={feeding.id}>
-                      <TableCell className="font-medium">
-                        {feeding.time}
-                      </TableCell>
+                      <TableCell className="font-medium">{feeding.time}</TableCell>
                       <TableCell>{feeding.nursery}</TableCell>
                       <TableCell>
                         <div className="text-sm">
@@ -555,25 +533,23 @@ export default function Feeding() {
                             ) : (
                               <AlertTriangle className="h-4 w-4 text-yellow-600" />
                             )}
-                            <span className="text-sm">
-                              {feeding.actualAmount} kg
-                            </span>
+                            <span className="text-sm">{feeding.actualAmount} kg</span>
                           </div>
                         ) : (
-                          <span className="text-sm text-muted-foreground">
-                            Pendente
-                          </span>
+                          <span className="text-sm text-muted-foreground">Pendente</span>
                         )}
                       </TableCell>
                       <TableCell className="text-sm">
-                        {feeding.operator || "-"}
-                      </TableCell>
-                      <TableCell>{getStatusBadge(feeding.status)}</TableCell>
-                      <TableCell className="text-sm max-w-[200px] truncate">
-                        {feeding.notes || "-"}
+                        {feeding.operator || '-'}
                       </TableCell>
                       <TableCell>
-                        {feeding.status === "Pendente" && (
+                        {getStatusBadge(feeding.status)}
+                      </TableCell>
+                      <TableCell className="text-sm max-w-[200px] truncate">
+                        {feeding.notes || '-'}
+                      </TableCell>
+                      <TableCell>
+                        {feeding.status === 'Pendente' && (
                           <Button size="sm" className="h-8">
                             Confirmar
                           </Button>
@@ -603,12 +579,8 @@ export default function Feeding() {
                       <div>
                         <h4 className="font-medium">{stock.feedType}</h4>
                         <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span>
-                            Estoque: {stock.currentStock.toLocaleString()} kg
-                          </span>
-                          <span>
-                            Consumo diário: {stock.dailyConsumption} kg
-                          </span>
+                          <span>Estoque: {stock.currentStock.toLocaleString()} kg</span>
+                          <span>Consumo diário: {stock.dailyConsumption} kg</span>
                         </div>
                       </div>
                       {getStockStatus(stock.status)}
@@ -616,12 +588,10 @@ export default function Feeding() {
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span>Dias restantes</span>
-                        <span className="font-medium">
-                          {stock.daysRemaining} dias
-                        </span>
+                        <span className="font-medium">{stock.daysRemaining} dias</span>
                       </div>
-                      <Progress
-                        value={(stock.daysRemaining / 30) * 100}
+                      <Progress 
+                        value={(stock.daysRemaining / 30) * 100} 
                         className="h-2"
                       />
                       {stock.daysRemaining <= 15 && (
@@ -639,5 +609,5 @@ export default function Feeding() {
         </TabsContent>
       </Tabs>
     </div>
-  );
+  )
 }

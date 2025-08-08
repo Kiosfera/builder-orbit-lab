@@ -198,13 +198,17 @@
 /* Mobile-specific improvements */
 @media (max-width: 640px) {
   /* Improve tap targets */
-  button, [role="button"], .clickable {
+  button,
+  [role="button"],
+  .clickable {
     min-height: 44px;
     min-width: 44px;
   }
 
   /* Better form inputs on mobile */
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     font-size: 16px; /* Prevents zoom on iOS */
   }
 
@@ -227,7 +231,8 @@
   }
 
   /* Better button press states */
-  button:active, [role="button"]:active {
+  button:active,
+  [role="button"]:active {
     transform: scale(0.98);
     transition: transform 0.1s;
   }

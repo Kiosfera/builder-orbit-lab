@@ -570,7 +570,9 @@ export default function Stocking() {
               </div>
             </CardHeader>
             <CardContent>
-              <Table>
+              <div className="overflow-x-auto -mx-6 sm:-mx-0">
+                <div className="min-w-[800px] px-6 sm:px-0">
+                  <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Lote</TableHead>
@@ -677,7 +679,9 @@ export default function Stocking() {
                     </TableRow>
                   ))}
                 </TableBody>
-              </Table>
+                  </Table>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>

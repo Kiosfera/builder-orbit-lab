@@ -89,15 +89,13 @@ export default function Index() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4 sm:space-y-6 lg:space-y-8">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:gap-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
-              Dashboard
-            </h1>
-            <p className="text-muted-foreground mt-1 text-sm sm:text-base">
+            <h1 className="text-responsive-2xl font-bold text-foreground">Dashboard</h1>
+            <p className="text-muted-foreground mt-1 text-responsive-sm">
               Visão geral das operações aquícolas
             </p>
           </div>
@@ -130,8 +128,8 @@ export default function Index() {
               <stat.icon className={`h-4 w-4 ${stat.color}`} />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-muted-foreground">{stat.change}</p>
+              <div className="text-xl sm:text-2xl font-bold">{stat.value}</div>
+              <p className="text-xs sm:text-sm text-muted-foreground">{stat.change}</p>
             </CardContent>
           </Card>
         ))}
@@ -149,9 +147,9 @@ export default function Index() {
           <CardContent className="space-y-4">
             {nurseryStatus.map((farm, index) => (
               <div key={index} className="space-y-2">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0">
                   <span className="text-sm font-medium">{farm.name}</span>
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-xs sm:text-sm text-muted-foreground">
                     {farm.active}/{farm.total} viveiros
                   </span>
                 </div>
@@ -178,7 +176,7 @@ export default function Index() {
           <CardContent>
             <div className="space-y-4">
               {recentActivity.map((activity, index) => (
-                <div key={index} className="flex items-start gap-3">
+                <div key={index} className="flex items-start gap-2 sm:gap-3">
                   <div
                     className={`mt-1 p-1 rounded-full ${
                       activity.status === "success"
@@ -207,11 +205,11 @@ export default function Index() {
                     <p className="text-sm font-medium text-foreground">
                       {activity.action}
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       {activity.detail}
                     </p>
                   </div>
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-xs text-muted-foreground whitespace-nowrap">
                     {activity.time}
                   </span>
                 </div>
@@ -232,47 +230,27 @@ export default function Index() {
         <CardContent>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <Link to="/feeding" className="block">
-              <Button
-                variant="outline"
-                className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2"
-              >
+              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
                 <Fish className="h-5 w-5 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm text-center leading-tight">
-                  Arraçoamento
-                </span>
+                <span className="text-xs sm:text-sm text-center leading-tight">Arraçoamento</span>
               </Button>
             </Link>
             <Link to="/water-quality" className="block">
-              <Button
-                variant="outline"
-                className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2"
-              >
+              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
                 <Droplets className="h-5 w-5 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm text-center leading-tight">
-                  Qualidade Água
-                </span>
+                <span className="text-xs sm:text-sm text-center leading-tight">Qualidade Água</span>
               </Button>
             </Link>
             <Link to="/health" className="block">
-              <Button
-                variant="outline"
-                className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2"
-              >
+              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
                 <Activity className="h-5 w-5 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm text-center leading-tight">
-                  Saúde Animal
-                </span>
+                <span className="text-xs sm:text-sm text-center leading-tight">Saúde Animal</span>
               </Button>
             </Link>
             <Link to="/biometry" className="block">
-              <Button
-                variant="outline"
-                className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2"
-              >
+              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
                 <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm text-center leading-tight">
-                  Biometria
-                </span>
+                <span className="text-xs sm:text-sm text-center leading-tight">Biometria</span>
               </Button>
             </Link>
           </div>

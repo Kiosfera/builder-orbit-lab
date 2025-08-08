@@ -12,6 +12,13 @@ import Auth from "./pages/Auth";
 import Farm from "./pages/Farm";
 import Stocking from "./pages/Stocking";
 import Inventory from "./pages/Inventory";
+import Feeding from "./pages/Feeding";
+import WaterQuality from "./pages/WaterQuality";
+import Health from "./pages/Health";
+import Biometry from "./pages/Biometry";
+import Monitoring from "./pages/Monitoring";
+import Tasks from "./pages/Tasks";
+import CycleHistory from "./pages/CycleHistory";
 import Reports from "./pages/Reports";
 import NotFound from "./pages/NotFound";
 
@@ -30,6 +37,13 @@ const App = () => (
             <Route path="/farm" element={<Farm />} />
             <Route path="/stocking" element={<Stocking />} />
             <Route path="/inventory" element={<Inventory />} />
+            <Route path="/feeding" element={<Feeding />} />
+            <Route path="/water-quality" element={<WaterQuality />} />
+            <Route path="/health" element={<Health />} />
+            <Route path="/biometry" element={<Biometry />} />
+            <Route path="/monitoring" element={<Monitoring />} />
+            <Route path="/tasks" element={<Tasks />} />
+            <Route path="/cycle-history" element={<CycleHistory />} />
             <Route path="/reports" element={<Reports />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

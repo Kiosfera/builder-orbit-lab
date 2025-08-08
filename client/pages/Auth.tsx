@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import { 
-  Users, 
-  UserPlus, 
-  Shield, 
-  Mail, 
-  Phone, 
+import { useState } from "react";
+import {
+  Users,
+  UserPlus,
+  Shield,
+  Mail,
+  Phone,
   Eye,
   Search,
   MoreHorizontal,
   Edit,
-  Trash2
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from '@/components/ui/table'
+  Trash2,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu";
 import {
   Dialog,
   DialogContent,
@@ -38,109 +44,112 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
-import { 
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+} from "@/components/ui/select";
 
 export default function Auth() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [isAddUserOpen, setIsAddUserOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isAddUserOpen, setIsAddUserOpen] = useState(false);
 
   const users = [
     {
       id: 1,
-      name: 'João Silva',
-      email: 'joao@fazenda.com',
-      phone: '+55 11 99999-9999',
-      role: 'Gestor',
-      status: 'Ativo',
-      lastLogin: '2024-01-15 14:30',
-      verified: true
+      name: "João Silva",
+      email: "joao@fazenda.com",
+      phone: "+55 11 99999-9999",
+      role: "Gestor",
+      status: "Ativo",
+      lastLogin: "2024-01-15 14:30",
+      verified: true,
     },
     {
       id: 2,
-      name: 'Maria Santos',
-      email: 'maria@fazenda.com',
-      phone: '+55 11 88888-8888',
-      role: 'Operador',
-      status: 'Ativo',
-      lastLogin: '2024-01-15 09:15',
-      verified: true
+      name: "Maria Santos",
+      email: "maria@fazenda.com",
+      phone: "+55 11 88888-8888",
+      role: "Operador",
+      status: "Ativo",
+      lastLogin: "2024-01-15 09:15",
+      verified: true,
     },
     {
       id: 3,
-      name: 'Pedro Costa',
-      email: 'pedro@fazenda.com',
-      phone: '+55 11 77777-7777',
-      role: 'Operador',
-      status: 'Pendente',
-      lastLogin: 'Nunca',
-      verified: false
+      name: "Pedro Costa",
+      email: "pedro@fazenda.com",
+      phone: "+55 11 77777-7777",
+      role: "Operador",
+      status: "Pendente",
+      lastLogin: "Nunca",
+      verified: false,
     },
     {
       id: 4,
-      name: 'Ana Oliveira',
-      email: 'ana@fazenda.com',
-      phone: '+55 11 66666-6666',
-      role: 'Gestor',
-      status: 'Inativo',
-      lastLogin: '2024-01-10 16:45',
-      verified: true
-    }
-  ]
+      name: "Ana Oliveira",
+      email: "ana@fazenda.com",
+      phone: "+55 11 66666-6666",
+      role: "Gestor",
+      status: "Inativo",
+      lastLogin: "2024-01-10 16:45",
+      verified: true,
+    },
+  ];
 
   const auditLogs = [
     {
       id: 1,
-      user: 'João Silva',
-      action: 'Login realizado',
-      timestamp: '2024-01-15 14:30:25',
-      ip: '192.168.1.100',
-      details: 'Login via web'
+      user: "João Silva",
+      action: "Login realizado",
+      timestamp: "2024-01-15 14:30:25",
+      ip: "192.168.1.100",
+      details: "Login via web",
     },
     {
       id: 2,
-      user: 'Maria Santos',
-      action: 'Cadastrou novo viveiro',
-      timestamp: '2024-01-15 09:15:42',
-      ip: '192.168.1.105',
-      details: 'Viveiro A-12 - Fazenda São João'
+      user: "Maria Santos",
+      action: "Cadastrou novo viveiro",
+      timestamp: "2024-01-15 09:15:42",
+      ip: "192.168.1.105",
+      details: "Viveiro A-12 - Fazenda São João",
     },
     {
       id: 3,
-      user: 'João Silva',
-      action: 'Alterou permissões de usuário',
-      timestamp: '2024-01-15 08:22:13',
-      ip: '192.168.1.100',
-      details: 'Usuário: Pedro Costa - Perfil: Operador'
+      user: "João Silva",
+      action: "Alterou permissões de usuário",
+      timestamp: "2024-01-15 08:22:13",
+      ip: "192.168.1.100",
+      details: "Usuário: Pedro Costa - Perfil: Operador",
     },
     {
       id: 4,
-      user: 'Ana Oliveira',
-      action: 'Logout realizado',
-      timestamp: '2024-01-14 18:45:30',
-      ip: '192.168.1.108',
-      details: 'Logout manual'
-    }
-  ]
+      user: "Ana Oliveira",
+      action: "Logout realizado",
+      timestamp: "2024-01-14 18:45:30",
+      ip: "192.168.1.108",
+      details: "Logout manual",
+    },
+  ];
 
-  const filteredUsers = users.filter(user =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const filteredUsers = users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Autenticação e Usuários</h1>
+          <h1 className="text-2xl font-bold text-foreground">
+            Autenticação e Usuários
+          </h1>
           <p className="text-muted-foreground">
             Gerencie usuários, perfis de acesso e auditoria do sistema
           </p>
@@ -166,7 +175,11 @@ export default function Auth() {
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">E-mail</Label>
-                <Input id="email" type="email" placeholder="usuario@email.com" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="usuario@email.com"
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="phone">Telefone</Label>
@@ -198,7 +211,9 @@ export default function Auth() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total de Usuários</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Total de Usuários
+            </CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -215,9 +230,7 @@ export default function Auth() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">2</div>
-            <p className="text-xs text-muted-foreground">
-              Acesso completo
-            </p>
+            <p className="text-xs text-muted-foreground">Acesso completo</p>
           </CardContent>
         </Card>
         <Card>
@@ -227,9 +240,7 @@ export default function Auth() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">2</div>
-            <p className="text-xs text-muted-foreground">
-              Acesso limitado
-            </p>
+            <p className="text-xs text-muted-foreground">Acesso limitado</p>
           </CardContent>
         </Card>
       </div>
@@ -302,19 +313,30 @@ export default function Auth() {
                       <TableCell>
                         <div className="space-y-1">
                           <p className="text-sm">{user.email}</p>
-                          <p className="text-xs text-muted-foreground">{user.phone}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {user.phone}
+                          </p>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge variant={user.role === 'Gestor' ? 'default' : 'secondary'}>
+                        <Badge
+                          variant={
+                            user.role === "Gestor" ? "default" : "secondary"
+                          }
+                        >
                           {user.role}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge variant={
-                          user.status === 'Ativo' ? 'default' :
-                          user.status === 'Pendente' ? 'secondary' : 'destructive'
-                        }>
+                        <Badge
+                          variant={
+                            user.status === "Ativo"
+                              ? "default"
+                              : user.status === "Pendente"
+                                ? "secondary"
+                                : "destructive"
+                          }
+                        >
                           {user.status}
                         </Badge>
                       </TableCell>
@@ -392,5 +414,5 @@ export default function Auth() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

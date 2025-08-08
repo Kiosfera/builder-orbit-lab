@@ -94,7 +94,9 @@ export default function Index() {
       <div className="flex flex-col gap-4 sm:gap-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-responsive-2xl font-bold text-foreground">Dashboard</h1>
+            <h1 className="text-responsive-2xl font-bold text-foreground">
+              Dashboard
+            </h1>
             <p className="text-muted-foreground mt-1 text-responsive-sm">
               Visão geral das operações aquícolas
             </p>
@@ -129,7 +131,9 @@ export default function Index() {
             </CardHeader>
             <CardContent>
               <div className="text-xl sm:text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs sm:text-sm text-muted-foreground">{stat.change}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                {stat.change}
+              </p>
             </CardContent>
           </Card>
         ))}
@@ -230,27 +234,47 @@ export default function Index() {
         <CardContent>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <Link to="/feeding" className="block">
-              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
+              <Button
+                variant="outline"
+                className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2"
+              >
                 <Fish className="h-5 w-5 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm text-center leading-tight">Arraçoamento</span>
+                <span className="text-xs sm:text-sm text-center leading-tight">
+                  Arraçoamento
+                </span>
               </Button>
             </Link>
             <Link to="/water-quality" className="block">
-              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
+              <Button
+                variant="outline"
+                className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2"
+              >
                 <Droplets className="h-5 w-5 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm text-center leading-tight">Qualidade Água</span>
+                <span className="text-xs sm:text-sm text-center leading-tight">
+                  Qualidade Água
+                </span>
               </Button>
             </Link>
             <Link to="/health" className="block">
-              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
+              <Button
+                variant="outline"
+                className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2"
+              >
                 <Activity className="h-5 w-5 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm text-center leading-tight">Saúde Animal</span>
+                <span className="text-xs sm:text-sm text-center leading-tight">
+                  Saúde Animal
+                </span>
               </Button>
             </Link>
             <Link to="/biometry" className="block">
-              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
+              <Button
+                variant="outline"
+                className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2"
+              >
                 <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6" />
-                <span className="text-xs sm:text-sm text-center leading-tight">Biometria</span>
+                <span className="text-xs sm:text-sm text-center leading-tight">
+                  Biometria
+                </span>
               </Button>
             </Link>
           </div>

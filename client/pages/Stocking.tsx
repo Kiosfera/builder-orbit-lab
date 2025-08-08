@@ -573,112 +573,112 @@ export default function Stocking() {
               <div className="overflow-x-auto -mx-6 sm:-mx-0">
                 <div className="min-w-[800px] px-6 sm:px-0">
                   <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Lote</TableHead>
-                    <TableHead>Viveiro</TableHead>
-                    <TableHead>Data Povoamento</TableHead>
-                    <TableHead>PLs Iniciais</TableHead>
-                    <TableHead>População Atual</TableHead>
-                    <TableHead>Sobrevivência</TableHead>
-                    <TableHead>Custo Total</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="w-[70px]"></TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {stockingLots.map((lot) => (
-                    <TableRow key={lot.id}>
-                      <TableCell>
-                        <div>
-                          <p className="font-medium">{lot.id}</p>
-                          <p className="text-xs text-muted-foreground">
-                            {lot.plSupplier}
-                          </p>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div>
-                          <p className="font-medium">{lot.nursery}</p>
-                          <p className="text-xs text-muted-foreground">
-                            {lot.farm}
-                          </p>
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-sm">
-                        {lot.stockingDate}
-                      </TableCell>
-                      <TableCell>
-                        <div>
-                          <p className="font-medium">
-                            {lot.initialPLs.toLocaleString()}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            R$ {lot.plCost.toFixed(3)}/PL
-                          </p>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div>
-                          <p className="font-medium">
-                            {lot.currentPopulation.toLocaleString()}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            Dia {lot.currentDay}
-                          </p>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium">
-                            {lot.survivalRate}%
-                          </span>
-                          {lot.survivalRate >= 95 ? (
-                            <CheckCircle className="h-3 w-3 text-green-600" />
-                          ) : lot.survivalRate >= 90 ? (
-                            <AlertTriangle className="h-3 w-3 text-yellow-600" />
-                          ) : (
-                            <AlertTriangle className="h-3 w-3 text-red-600" />
-                          )}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div>
-                          <p className="font-medium">
-                            R$ {lot.totalCost.toLocaleString()}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {getQualityBadge(lot.plQuality)}
-                          </p>
-                        </div>
-                      </TableCell>
-                      <TableCell>{getStatusBadge(lot.status)}</TableCell>
-                      <TableCell>
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="sm">
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <DropdownMenuItem>
-                              <Eye className="h-4 w-4 mr-2" />
-                              Ver Detalhes
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                              <Edit className="h-4 w-4 mr-2" />
-                              Editar
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                              <Calculator className="h-4 w-4 mr-2" />
-                              Calcular Custos
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Lote</TableHead>
+                        <TableHead>Viveiro</TableHead>
+                        <TableHead>Data Povoamento</TableHead>
+                        <TableHead>PLs Iniciais</TableHead>
+                        <TableHead>População Atual</TableHead>
+                        <TableHead>Sobrevivência</TableHead>
+                        <TableHead>Custo Total</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead className="w-[70px]"></TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {stockingLots.map((lot) => (
+                        <TableRow key={lot.id}>
+                          <TableCell>
+                            <div>
+                              <p className="font-medium">{lot.id}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {lot.plSupplier}
+                              </p>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div>
+                              <p className="font-medium">{lot.nursery}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {lot.farm}
+                              </p>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-sm">
+                            {lot.stockingDate}
+                          </TableCell>
+                          <TableCell>
+                            <div>
+                              <p className="font-medium">
+                                {lot.initialPLs.toLocaleString()}
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                R$ {lot.plCost.toFixed(3)}/PL
+                              </p>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div>
+                              <p className="font-medium">
+                                {lot.currentPopulation.toLocaleString()}
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                Dia {lot.currentDay}
+                              </p>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-2">
+                              <span className="font-medium">
+                                {lot.survivalRate}%
+                              </span>
+                              {lot.survivalRate >= 95 ? (
+                                <CheckCircle className="h-3 w-3 text-green-600" />
+                              ) : lot.survivalRate >= 90 ? (
+                                <AlertTriangle className="h-3 w-3 text-yellow-600" />
+                              ) : (
+                                <AlertTriangle className="h-3 w-3 text-red-600" />
+                              )}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div>
+                              <p className="font-medium">
+                                R$ {lot.totalCost.toLocaleString()}
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                {getQualityBadge(lot.plQuality)}
+                              </p>
+                            </div>
+                          </TableCell>
+                          <TableCell>{getStatusBadge(lot.status)}</TableCell>
+                          <TableCell>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm">
+                                  <MoreHorizontal className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem>
+                                  <Eye className="h-4 w-4 mr-2" />
+                                  Ver Detalhes
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  <Edit className="h-4 w-4 mr-2" />
+                                  Editar
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  <Calculator className="h-4 w-4 mr-2" />
+                                  Calcular Custos
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
                   </Table>
                 </div>
               </div>

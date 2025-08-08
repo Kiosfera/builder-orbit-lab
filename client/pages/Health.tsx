@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { 
-  Heart, 
+import { useState } from "react";
+import {
+  Heart,
   AlertTriangle,
   TrendingDown,
   Eye,
@@ -11,21 +11,27 @@ import {
   Plus,
   Search,
   Filter,
-  Download
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from '@/components/ui/table'
+  Download,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import {
   Dialog,
   DialogContent,
@@ -34,202 +40,213 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
-import { 
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
-import { Progress } from '@/components/ui/progress'
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Progress } from "@/components/ui/progress";
 
 export default function Health() {
-  const [isAddObservationOpen, setIsAddObservationOpen] = useState(false)
-  const [isAddMortalityOpen, setIsAddMortalityOpen] = useState(false)
-  const [selectedNursery, setSelectedNursery] = useState('all')
+  const [isAddObservationOpen, setIsAddObservationOpen] = useState(false);
+  const [isAddMortalityOpen, setIsAddMortalityOpen] = useState(false);
+  const [selectedNursery, setSelectedNursery] = useState("all");
 
   const healthOverview = [
     {
-      nursery: 'Viveiro A-1',
-      farm: 'Fazenda São João',
+      nursery: "Viveiro A-1",
+      farm: "Fazenda São João",
       population: 148500,
       lastMortality: 450,
       mortalityRate: 0.3, // %
-      healthStatus: 'Bom',
-      lastObservation: '2024-01-15 14:30',
-      alerts: 0
+      healthStatus: "Bom",
+      lastObservation: "2024-01-15 14:30",
+      alerts: 0,
     },
     {
-      nursery: 'Viveiro A-2', 
-      farm: 'Fazenda São João',
+      nursery: "Viveiro A-2",
+      farm: "Fazenda São João",
       population: 95600,
       lastMortality: 120,
       mortalityRate: 0.12,
-      healthStatus: 'Excelente',
-      lastObservation: '2024-01-15 08:45',
-      alerts: 0
+      healthStatus: "Excelente",
+      lastObservation: "2024-01-15 08:45",
+      alerts: 0,
     },
     {
-      nursery: 'Viveiro B-1',
-      farm: 'Fazenda Santa Maria', 
+      nursery: "Viveiro B-1",
+      farm: "Fazenda Santa Maria",
       population: 175200,
       lastMortality: 890,
       mortalityRate: 0.51,
-      healthStatus: 'Atenção',
-      lastObservation: '2024-01-15 16:20',
-      alerts: 1
+      healthStatus: "Atenção",
+      lastObservation: "2024-01-15 16:20",
+      alerts: 1,
     },
     {
-      nursery: 'Viveiro C-1',
-      farm: 'Fazenda Boa Vista',
+      nursery: "Viveiro C-1",
+      farm: "Fazenda Boa Vista",
       population: 142800,
       lastMortality: 1250,
       mortalityRate: 0.87,
-      healthStatus: 'Crítico',
-      lastObservation: '2024-01-15 12:15',
-      alerts: 3
-    }
-  ]
+      healthStatus: "Crítico",
+      lastObservation: "2024-01-15 12:15",
+      alerts: 3,
+    },
+  ];
 
   const clinicalObservations = [
     {
       id: 1,
-      nursery: 'Viveiro B-1',
-      timestamp: '2024-01-15 16:20',
-      operator: 'Dr. Ana Costa',
-      type: 'Inspeção Visual',
-      observations: 'Comportamento lento em alguns indivíduos. Presença de organismos em superfície.',
-      severity: 'Atenção',
-      actions: 'Aumentar aeração. Coletar amostras para análise.',
-      followUp: '2024-01-16'
+      nursery: "Viveiro B-1",
+      timestamp: "2024-01-15 16:20",
+      operator: "Dr. Ana Costa",
+      type: "Inspeção Visual",
+      observations:
+        "Comportamento lento em alguns indivíduos. Presença de organismos em superfície.",
+      severity: "Atenção",
+      actions: "Aumentar aeração. Coletar amostras para análise.",
+      followUp: "2024-01-16",
     },
     {
       id: 2,
-      nursery: 'Viveiro C-1',
-      timestamp: '2024-01-15 12:15',
-      operator: 'Dr. Ana Costa',
-      type: 'Exame Clínico',
-      observations: 'Sinais de estresse. Coloração alterada. Possível início de doença.',
-      severity: 'Crítico',
-      actions: 'Isolamento de amostra. Tratamento preventivo. Monitoramento intensivo.',
-      followUp: '2024-01-15'
+      nursery: "Viveiro C-1",
+      timestamp: "2024-01-15 12:15",
+      operator: "Dr. Ana Costa",
+      type: "Exame Clínico",
+      observations:
+        "Sinais de estresse. Coloração alterada. Possível início de doença.",
+      severity: "Crítico",
+      actions:
+        "Isolamento de amostra. Tratamento preventivo. Monitoramento intensivo.",
+      followUp: "2024-01-15",
     },
     {
       id: 3,
-      nursery: 'Viveiro A-1',
-      timestamp: '2024-01-15 14:30',
-      operator: 'Maria Santos',
-      type: 'Rotina',
-      observations: 'Comportamento normal. Boa atividade alimentar. Sem sinais aparentes.',
-      severity: 'Normal',
-      actions: 'Manter monitoramento rotineiro.',
-      followUp: '2024-01-17'
-    }
-  ]
+      nursery: "Viveiro A-1",
+      timestamp: "2024-01-15 14:30",
+      operator: "Maria Santos",
+      type: "Rotina",
+      observations:
+        "Comportamento normal. Boa atividade alimentar. Sem sinais aparentes.",
+      severity: "Normal",
+      actions: "Manter monitoramento rotineiro.",
+      followUp: "2024-01-17",
+    },
+  ];
 
   const mortalityRecords = [
     {
       id: 1,
-      nursery: 'Viveiro C-1',
-      date: '2024-01-15',
-      time: '09:00',
+      nursery: "Viveiro C-1",
+      date: "2024-01-15",
+      time: "09:00",
       quantity: 1250,
-      cause: 'Doença (Suspeita)',
-      operator: 'Pedro Costa',
+      cause: "Doença (Suspeita)",
+      operator: "Pedro Costa",
       weight: 28.5, // g average
       biomassImpact: 35.6, // kg
-      observations: 'Mortalidade concentrada em uma área específica do viveiro.'
+      observations:
+        "Mortalidade concentrada em uma área específica do viveiro.",
     },
     {
       id: 2,
-      nursery: 'Viveiro B-1', 
-      date: '2024-01-15',
-      time: '14:00',
+      nursery: "Viveiro B-1",
+      date: "2024-01-15",
+      time: "14:00",
       quantity: 890,
-      cause: 'Estresse',
-      operator: 'João Silva',
+      cause: "Estresse",
+      operator: "João Silva",
       weight: 22.3,
       biomassImpact: 19.8,
-      observations: 'Relacionado à mudança brusca de temperatura.'
+      observations: "Relacionado à mudança brusca de temperatura.",
     },
     {
       id: 3,
-      nursery: 'Viveiro A-1',
-      date: '2024-01-15',
-      time: '06:30',
+      nursery: "Viveiro A-1",
+      date: "2024-01-15",
+      time: "06:30",
       quantity: 450,
-      cause: 'Natural',
-      operator: 'Maria Santos',
+      cause: "Natural",
+      operator: "Maria Santos",
       weight: 16.8,
       biomassImpact: 7.6,
-      observations: 'Mortalidade dentro dos parâmetros normais.'
-    }
-  ]
+      observations: "Mortalidade dentro dos parâmetros normais.",
+    },
+  ];
 
   const diseases = [
     {
-      name: 'Vibriose',
-      risk: 'Alto',
-      symptoms: 'Letargia, falta de apetite, coloração alterada',
-      prevention: 'Controle de qualidade da água, probióticos'
+      name: "Vibriose",
+      risk: "Alto",
+      symptoms: "Letargia, falta de apetite, coloração alterada",
+      prevention: "Controle de qualidade da água, probióticos",
     },
     {
-      name: 'Síndrome da Mancha Branca',
-      risk: 'Médio',
-      symptoms: 'Manchas brancas no exoesqueleto, mortalidade súbita',
-      prevention: 'Biossegurança, controle de vetores'
+      name: "Síndrome da Mancha Branca",
+      risk: "Médio",
+      symptoms: "Manchas brancas no exoesqueleto, mortalidade súbita",
+      prevention: "Biossegurança, controle de vetores",
     },
     {
-      name: 'Necrose Hepatopancreática',
-      risk: 'Médio',
-      symptoms: 'Crescimento lento, hepatopâncreas pálido',
-      prevention: 'Qualidade da ração, probióticos'
-    }
-  ]
+      name: "Necrose Hepatopancreática",
+      risk: "Médio",
+      symptoms: "Crescimento lento, hepatopâncreas pálido",
+      prevention: "Qualidade da ração, probióticos",
+    },
+  ];
 
   const getHealthBadge = (status: string) => {
     switch (status) {
-      case 'Excelente':
-        return <Badge className="bg-green-100 text-green-800">{status}</Badge>
-      case 'Bom':
-        return <Badge className="bg-blue-100 text-blue-800">{status}</Badge>
-      case 'Atenção':
-        return <Badge className="bg-yellow-100 text-yellow-800">{status}</Badge>
-      case 'Crítico':
-        return <Badge variant="destructive">{status}</Badge>
+      case "Excelente":
+        return <Badge className="bg-green-100 text-green-800">{status}</Badge>;
+      case "Bom":
+        return <Badge className="bg-blue-100 text-blue-800">{status}</Badge>;
+      case "Atenção":
+        return (
+          <Badge className="bg-yellow-100 text-yellow-800">{status}</Badge>
+        );
+      case "Crítico":
+        return <Badge variant="destructive">{status}</Badge>;
       default:
-        return <Badge variant="outline">{status}</Badge>
+        return <Badge variant="outline">{status}</Badge>;
     }
-  }
+  };
 
   const getSeverityBadge = (severity: string) => {
     switch (severity) {
-      case 'Normal':
-        return <Badge className="bg-green-100 text-green-800">{severity}</Badge>
-      case 'Atenção':
-        return <Badge className="bg-yellow-100 text-yellow-800">{severity}</Badge>
-      case 'Crítico':
-        return <Badge variant="destructive">{severity}</Badge>
+      case "Normal":
+        return (
+          <Badge className="bg-green-100 text-green-800">{severity}</Badge>
+        );
+      case "Atenção":
+        return (
+          <Badge className="bg-yellow-100 text-yellow-800">{severity}</Badge>
+        );
+      case "Crítico":
+        return <Badge variant="destructive">{severity}</Badge>;
       default:
-        return <Badge variant="outline">{severity}</Badge>
+        return <Badge variant="outline">{severity}</Badge>;
     }
-  }
+  };
 
   const getRiskBadge = (risk: string) => {
     switch (risk) {
-      case 'Baixo':
-        return <Badge className="bg-green-100 text-green-800">{risk}</Badge>
-      case 'Médio':
-        return <Badge className="bg-yellow-100 text-yellow-800">{risk}</Badge>
-      case 'Alto':
-        return <Badge variant="destructive">{risk}</Badge>
+      case "Baixo":
+        return <Badge className="bg-green-100 text-green-800">{risk}</Badge>;
+      case "Médio":
+        return <Badge className="bg-yellow-100 text-yellow-800">{risk}</Badge>;
+      case "Alto":
+        return <Badge variant="destructive">{risk}</Badge>;
       default:
-        return <Badge variant="outline">{risk}</Badge>
+        return <Badge variant="outline">{risk}</Badge>;
     }
-  }
+  };
 
   return (
     <div className="space-y-6">
@@ -242,7 +259,10 @@ export default function Health() {
           </p>
         </div>
         <div className="flex gap-3 mt-4 lg:mt-0">
-          <Dialog open={isAddMortalityOpen} onOpenChange={setIsAddMortalityOpen}>
+          <Dialog
+            open={isAddMortalityOpen}
+            onOpenChange={setIsAddMortalityOpen}
+          >
             <DialogTrigger asChild>
               <Button variant="outline">
                 <Skull className="h-4 w-4 mr-2" />
@@ -273,21 +293,30 @@ export default function Health() {
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="mort-time">Data/Hora</Label>
-                    <Input 
-                      id="mort-time" 
-                      type="datetime-local" 
-                      defaultValue={new Date().toISOString().slice(0, 16)} 
+                    <Input
+                      id="mort-time"
+                      type="datetime-local"
+                      defaultValue={new Date().toISOString().slice(0, 16)}
                     />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="grid gap-2">
                     <Label htmlFor="mort-quantity">Quantidade</Label>
-                    <Input id="mort-quantity" placeholder="1250" type="number" />
+                    <Input
+                      id="mort-quantity"
+                      placeholder="1250"
+                      type="number"
+                    />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="mort-weight">Peso Médio (g)</Label>
-                    <Input id="mort-weight" placeholder="28.5" step="0.1" type="number" />
+                    <Input
+                      id="mort-weight"
+                      placeholder="28.5"
+                      step="0.1"
+                      type="number"
+                    />
                   </div>
                 </div>
                 <div className="grid gap-2">
@@ -307,17 +336,26 @@ export default function Health() {
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="mort-obs">Observações</Label>
-                  <Textarea id="mort-obs" placeholder="Descreva as circunstâncias..." />
+                  <Textarea
+                    id="mort-obs"
+                    placeholder="Descreva as circunstâncias..."
+                  />
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" onClick={() => setIsAddMortalityOpen(false)}>
+                <Button
+                  type="submit"
+                  onClick={() => setIsAddMortalityOpen(false)}
+                >
                   Registrar Mortalidade
                 </Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
-          <Dialog open={isAddObservationOpen} onOpenChange={setIsAddObservationOpen}>
+          <Dialog
+            open={isAddObservationOpen}
+            onOpenChange={setIsAddObservationOpen}
+          >
             <DialogTrigger asChild>
               <Button>
                 <Plus className="h-4 w-4 mr-2" />
@@ -376,17 +414,17 @@ export default function Health() {
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="observations">Observações</Label>
-                  <Textarea 
-                    id="observations" 
-                    placeholder="Descreva o comportamento, sinais clínicos, aparência..." 
+                  <Textarea
+                    id="observations"
+                    placeholder="Descreva o comportamento, sinais clínicos, aparência..."
                     rows={3}
                   />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="actions">Ações Tomadas</Label>
-                  <Textarea 
-                    id="actions" 
-                    placeholder="Medidas tomadas ou recomendações..." 
+                  <Textarea
+                    id="actions"
+                    placeholder="Medidas tomadas ou recomendações..."
                     rows={2}
                   />
                 </div>
@@ -396,7 +434,10 @@ export default function Health() {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" onClick={() => setIsAddObservationOpen(false)}>
+                <Button
+                  type="submit"
+                  onClick={() => setIsAddObservationOpen(false)}
+                >
                   Registrar Observação
                 </Button>
               </DialogFooter>
@@ -409,19 +450,21 @@ export default function Health() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Taxa Mortalidade</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Taxa Mortalidade
+            </CardTitle>
             <TrendingDown className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">0.46%</div>
-            <p className="text-xs text-muted-foreground">
-              Últimas 24h
-            </p>
+            <p className="text-xs text-muted-foreground">Últimas 24h</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Viveiros Saudáveis</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Viveiros Saudáveis
+            </CardTitle>
             <Heart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -433,26 +476,26 @@ export default function Health() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Alertas Ativos</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Alertas Ativos
+            </CardTitle>
             <AlertTriangle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">4</div>
-            <p className="text-xs text-muted-foreground">
-              Requer atenção
-            </p>
+            <p className="text-xs text-muted-foreground">Requer atenção</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Observações Hoje</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Observações Hoje
+            </CardTitle>
             <Eye className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">3</div>
-            <p className="text-xs text-muted-foreground">
-              1 crítica
-            </p>
+            <p className="text-xs text-muted-foreground">1 crítica</p>
           </CardContent>
         </Card>
       </div>
@@ -476,14 +519,16 @@ export default function Health() {
                     </div>
                     <div>
                       <h4 className="font-medium">{nursery.nursery}</h4>
-                      <p className="text-sm text-muted-foreground">{nursery.farm}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {nursery.farm}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     {getHealthBadge(nursery.healthStatus)}
                     {nursery.alerts > 0 && (
                       <Badge variant="destructive" className="text-xs">
-                        {nursery.alerts} alerta{nursery.alerts > 1 ? 's' : ''}
+                        {nursery.alerts} alerta{nursery.alerts > 1 ? "s" : ""}
                       </Badge>
                     )}
                   </div>
@@ -491,18 +536,30 @@ export default function Health() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div>
                     <p className="text-sm text-muted-foreground">População</p>
-                    <p className="text-lg font-medium">{nursery.population.toLocaleString()}</p>
+                    <p className="text-lg font-medium">
+                      {nursery.population.toLocaleString()}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Mortalidade 24h</p>
-                    <p className="text-lg font-medium">{nursery.lastMortality.toLocaleString()}</p>
+                    <p className="text-sm text-muted-foreground">
+                      Mortalidade 24h
+                    </p>
+                    <p className="text-lg font-medium">
+                      {nursery.lastMortality.toLocaleString()}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Taxa Mortalidade</p>
-                    <p className="text-lg font-medium">{nursery.mortalityRate}%</p>
+                    <p className="text-sm text-muted-foreground">
+                      Taxa Mortalidade
+                    </p>
+                    <p className="text-lg font-medium">
+                      {nursery.mortalityRate}%
+                    </p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Última Observação</p>
+                    <p className="text-sm text-muted-foreground">
+                      Última Observação
+                    </p>
                     <p className="text-sm">{nursery.lastObservation}</p>
                   </div>
                 </div>
@@ -511,13 +568,17 @@ export default function Health() {
                     <span>Saúde Geral</span>
                     <span>{nursery.healthStatus}</span>
                   </div>
-                  <Progress 
+                  <Progress
                     value={
-                      nursery.healthStatus === 'Excelente' ? 95 :
-                      nursery.healthStatus === 'Bom' ? 80 :
-                      nursery.healthStatus === 'Atenção' ? 60 : 30
-                    } 
-                    className="h-2" 
+                      nursery.healthStatus === "Excelente"
+                        ? 95
+                        : nursery.healthStatus === "Bom"
+                          ? 80
+                          : nursery.healthStatus === "Atenção"
+                            ? 60
+                            : 30
+                    }
+                    className="h-2"
                   />
                 </div>
               </div>
@@ -569,7 +630,9 @@ export default function Health() {
                   {clinicalObservations.map((obs) => (
                     <TableRow key={obs.id}>
                       <TableCell className="text-sm">{obs.timestamp}</TableCell>
-                      <TableCell className="font-medium">{obs.nursery}</TableCell>
+                      <TableCell className="font-medium">
+                        {obs.nursery}
+                      </TableCell>
                       <TableCell>{obs.type}</TableCell>
                       <TableCell className="max-w-[300px]">
                         <p className="text-sm truncate">{obs.observations}</p>
@@ -579,9 +642,7 @@ export default function Health() {
                           </p>
                         )}
                       </TableCell>
-                      <TableCell>
-                        {getSeverityBadge(obs.severity)}
-                      </TableCell>
+                      <TableCell>{getSeverityBadge(obs.severity)}</TableCell>
                       <TableCell className="text-sm">{obs.followUp}</TableCell>
                       <TableCell className="text-sm">{obs.operator}</TableCell>
                     </TableRow>
@@ -628,14 +689,18 @@ export default function Health() {
                       <TableCell className="text-sm">
                         {record.date} {record.time}
                       </TableCell>
-                      <TableCell className="font-medium">{record.nursery}</TableCell>
+                      <TableCell className="font-medium">
+                        {record.nursery}
+                      </TableCell>
                       <TableCell>{record.quantity.toLocaleString()}</TableCell>
                       <TableCell>{record.weight}g</TableCell>
                       <TableCell className="text-red-600 font-medium">
                         -{record.biomassImpact}kg
                       </TableCell>
                       <TableCell>{record.cause}</TableCell>
-                      <TableCell className="text-sm">{record.operator}</TableCell>
+                      <TableCell className="text-sm">
+                        {record.operator}
+                      </TableCell>
                       <TableCell className="max-w-[200px] text-sm truncate">
                         {record.observations}
                       </TableCell>
@@ -681,5 +746,5 @@ export default function Health() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

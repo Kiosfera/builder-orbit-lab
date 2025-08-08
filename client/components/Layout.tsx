@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState } from 'react'
+import * as React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import {
   Fish,
   Users,
@@ -18,82 +19,107 @@ import {
   Scale,
   Monitor,
   CheckSquare,
-  Archive,
-} from "lucide-react";
-import { Button } from "./ui/button";
-import { cn } from "@/lib/utils";
+  Archive
+} from 'lucide-react'
+import { Button } from './ui/button'
+import { cn } from '@/lib/utils'
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-const navigation = [
-  { name: "Dashboard", href: "/", icon: Home },
-  { name: "Autenticação", href: "/auth", icon: Users },
-  { name: "Minha Fazenda", href: "/farm", icon: Building2 },
-  { name: "Povoamento", href: "/stocking", icon: Fish },
-  { name: "Estoque", href: "/inventory", icon: Package },
-  { name: "Arraçoamento", href: "/feeding", icon: Utensils },
-  { name: "Qualidade da Água", href: "/water-quality", icon: Droplets },
-  { name: "Saúde Animal", href: "/health", icon: Heart },
-  { name: "Biometria", href: "/biometry", icon: Scale },
-  { name: "Monitoramento", href: "/monitoring", icon: Monitor },
-  { name: "Tarefas", href: "/tasks", icon: CheckSquare },
-  { name: "Histórico de Ciclos", href: "/cycle-history", icon: Archive },
-  { name: "Relatórios", href: "/reports", icon: TrendingUp },
-];
+interface NavigationItem {
+  name: string
+  href: string
+  icon: React.ComponentType<any>
+}
+
+const navigation: NavigationItem[] = [
+  { name: 'Dashboard', href: '/', icon: Home },
+  { name: 'Autenticação', href: '/auth', icon: Users },
+  { name: 'Minha Fazenda', href: '/farm', icon: Building2 },
+  { name: 'Povoamento', href: '/stocking', icon: Fish },
+  { name: 'Estoque', href: '/inventory', icon: Package },
+  { name: 'Arraçoamento', href: '/feeding', icon: Utensils },
+  { name: 'Qualidade da Água', href: '/water-quality', icon: Droplets },
+  { name: 'Saúde Animal', href: '/health', icon: Heart },
+  { name: 'Biometria', href: '/biometry', icon: Scale },
+  { name: 'Monitoramento', href: '/monitoring', icon: Monitor },
+  { name: 'Tarefas', href: '/tasks', icon: CheckSquare },
+  { name: 'Histórico de Ciclos', href: '/cycle-history', icon: Archive },
+  { name: 'Relatórios', href: '/reports', icon: TrendingUp },
+]
 
 export default function Layout({ children }: LayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const location = useLocation()
+
+  // Close sidebar when route changes on mobile
+  React.useEffect(() => {
+    setSidebarOpen(false)
+  }, [location.pathname])
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Mobile sidebar */}
-      <div
-        className={cn(
-          "fixed inset-0 z-50 lg:hidden",
-          sidebarOpen ? "block" : "hidden",
-        )}
-      >
-        <div
-          className="fixed inset-0 bg-black/20"
-          onClick={() => setSidebarOpen(false)}
-        />
-        <div className="fixed left-0 top-0 h-full w-64 bg-white p-6 shadow-lg">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-2">
-              <Fish className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold text-primary">AquaFarm</span>
+      {/* Mobile sidebar overlay */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div
+            className="fixed inset-0 bg-black/50 transition-opacity"
+            onClick={() => setSidebarOpen(false)}
+          />
+          <div className="fixed left-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-xl transform transition-transform">
+            <div className="flex flex-col h-full">
+              {/* Mobile header */}
+              <div className="flex items-center justify-between p-6 border-b border-border">
+                <div className="flex items-center gap-2">
+                  <Fish className="h-8 w-8 text-primary" />
+                  <span className="text-xl font-bold text-primary">AquaFarm</span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <X className="h-5 w-5" />
+                </Button>
+              </div>
+
+              {/* Mobile navigation */}
+              <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={cn(
+                      "flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors",
+                      location.pathname === item.href
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    )}
+                  >
+                    <item.icon className="h-5 w-5 flex-shrink-0" />
+                    <span className="truncate">{item.name}</span>
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Mobile user section */}
+              <div className="p-4 border-t border-border">
+                <div className="flex items-center gap-3 px-3 py-2">
+                  <div className="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-medium">G</span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-sm">Gestor</p>
+                    <p className="text-xs text-muted-foreground truncate">gestor@fazenda.com</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSidebarOpen(false)}
-            >
-              <X className="h-5 w-5" />
-            </Button>
           </div>
-          <nav className="space-y-2">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                onClick={() => setSidebarOpen(false)}
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                  location.pathname === item.href
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-                )}
-              >
-                <item.icon className="h-4 w-4" />
-                {item.name}
-              </Link>
-            ))}
-          </nav>
         </div>
-      </div>
+      )}
 
       {/* Desktop sidebar */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-40 lg:w-64 lg:flex lg:flex-col">
@@ -102,7 +128,7 @@ export default function Layout({ children }: LayoutProps) {
             <Fish className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold text-primary">AquaFarm</span>
           </div>
-          <nav className="flex-1 px-4 py-6 space-y-2">
+          <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -111,24 +137,22 @@ export default function Layout({ children }: LayoutProps) {
                   "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                   location.pathname === item.href
                     ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                 )}
               >
-                <item.icon className="h-4 w-4" />
-                {item.name}
+                <item.icon className="h-4 w-4 flex-shrink-0" />
+                <span className="truncate">{item.name}</span>
               </Link>
             ))}
           </nav>
           <div className="px-4 py-4 border-t border-border">
             <div className="flex items-center gap-3 px-3 py-2 text-sm">
-              <div className="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center">
+              <div className="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-primary font-medium">G</span>
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <p className="font-medium">Gestor</p>
-                <p className="text-xs text-muted-foreground">
-                  gestor@fazenda.com
-                </p>
+                <p className="text-xs text-muted-foreground truncate">gestor@fazenda.com</p>
               </div>
             </div>
           </div>
@@ -139,38 +163,42 @@ export default function Layout({ children }: LayoutProps) {
       <div className="lg:pl-64">
         {/* Top bar */}
         <div className="sticky top-0 z-30 bg-white border-b border-border">
-          <div className="flex items-center justify-between px-4 py-3">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
               <Button
                 variant="ghost"
                 size="sm"
-                className="lg:hidden"
+                className="lg:hidden p-2"
                 onClick={() => setSidebarOpen(true)}
               >
                 <Menu className="h-5 w-5" />
               </Button>
-              <h1 className="text-lg font-semibold text-foreground">
-                {navigation.find((item) => item.href === location.pathname)
-                  ?.name || "Dashboard"}
+              <h1 className="text-lg sm:text-xl font-semibold text-foreground truncate">
+                {navigation.find(item => item.href === location.pathname)?.name || 'Dashboard'}
               </h1>
             </div>
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm">
+            <div className="flex items-center gap-1 sm:gap-2">
+              <Button variant="ghost" size="sm" className="p-2">
                 <Bell className="h-4 w-4" />
+                <span className="sr-only">Notificações</span>
               </Button>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="p-2">
                 <Settings className="h-4 w-4" />
+                <span className="sr-only">Configurações</span>
               </Button>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="p-2">
                 <LogOut className="h-4 w-4" />
+                <span className="sr-only">Sair</span>
               </Button>
             </div>
           </div>
         </div>
 
         {/* Page content */}
-        <main className="p-6">{children}</main>
+        <main className="p-4 sm:p-6">
+          {children}
+        </main>
       </div>
     </div>
-  );
+  )
 }

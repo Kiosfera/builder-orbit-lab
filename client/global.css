@@ -161,4 +161,74 @@
   .touch-target {
     @apply min-h-[44px] min-w-[44px];
   }
+
+  /* Mobile-first button improvements */
+  .btn-mobile {
+    @apply py-3 px-4 text-base font-medium;
+  }
+  .btn-mobile-sm {
+    @apply py-2 px-3 text-sm;
+  }
+
+  /* Better mobile card spacing */
+  .card-mobile {
+    @apply p-4 sm:p-6;
+  }
+  .card-mobile-sm {
+    @apply p-3 sm:p-4;
+  }
+
+  /* Mobile table improvements */
+  .table-mobile {
+    @apply text-sm;
+  }
+  .table-mobile th {
+    @apply py-3 px-2 sm:px-4;
+  }
+  .table-mobile td {
+    @apply py-2 px-2 sm:px-4;
+  }
+
+  /* Mobile dialog improvements */
+  .dialog-mobile {
+    @apply mx-4 w-[calc(100vw-2rem)] max-w-none sm:mx-auto sm:w-full sm:max-w-lg;
+  }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  /* Improve tap targets */
+  button, [role="button"], .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better form inputs on mobile */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Better table handling */
+  table {
+    font-size: 14px;
+  }
+
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices */
+  .hover\:bg-accent:hover {
+    background-color: inherit;
+  }
+
+  /* Better button press states */
+  button:active, [role="button"]:active {
+    transform: scale(0.98);
+    transition: transform 0.1s;
+  }
 }

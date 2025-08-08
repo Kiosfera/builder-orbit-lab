@@ -91,31 +91,34 @@ export default function Index() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
-          <p className="text-muted-foreground mt-1">
-            Visão geral das operações aquícolas
-          </p>
-        </div>
-        <div className="flex gap-3 mt-4 lg:mt-0">
-          <Link to="/feeding">
-            <Button>
-              <Fish className="h-4 w-4 mr-2" />
-              Novo Plano Alimentação
-            </Button>
-          </Link>
-          <Link to="/monitoring">
-            <Button variant="outline">
-              <TrendingUp className="h-4 w-4 mr-2" />
-              Monitoramento
-            </Button>
-          </Link>
+      <div className="flex flex-col gap-4 sm:gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Dashboard</h1>
+            <p className="text-muted-foreground mt-1 text-sm sm:text-base">
+              Visão geral das operações aquícolas
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link to="/feeding" className="w-full sm:w-auto">
+              <Button className="w-full sm:w-auto">
+                <Fish className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Novo Plano Alimentação</span>
+                <span className="sm:hidden">Alimentação</span>
+              </Button>
+            </Link>
+            <Link to="/monitoring" className="w-full sm:w-auto">
+              <Button variant="outline" className="w-full sm:w-auto">
+                <TrendingUp className="h-4 w-4 mr-2" />
+                Monitoramento
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {stats.map((stat, index) => (
           <Card key={index}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -132,7 +135,7 @@ export default function Index() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Farm Status */}
         <Card>
           <CardHeader>
@@ -151,7 +154,7 @@ export default function Index() {
                   </span>
                 </div>
                 <Progress value={farm.performance} className="h-2" />
-                <div className="flex justify-between text-xs text-muted-foreground">
+                <div className="flex flex-col sm:flex-row sm:justify-between text-xs text-muted-foreground gap-1">
                   <span>Performance: {farm.performance}%</span>
                   <span>
                     Ocupação: {Math.round((farm.active / farm.total) * 100)}%
@@ -225,29 +228,29 @@ export default function Index() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <Link to="/feeding" className="block">
-              <Button variant="outline" className="w-full h-20 flex-col gap-2">
-                <Fish className="h-6 w-6" />
-                <span>Arraçoamento</span>
+              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
+                <Fish className="h-5 w-5 sm:h-6 sm:w-6" />
+                <span className="text-xs sm:text-sm text-center leading-tight">Arraçoamento</span>
               </Button>
             </Link>
             <Link to="/water-quality" className="block">
-              <Button variant="outline" className="w-full h-20 flex-col gap-2">
-                <Droplets className="h-6 w-6" />
-                <span>Qualidade Água</span>
+              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
+                <Droplets className="h-5 w-5 sm:h-6 sm:w-6" />
+                <span className="text-xs sm:text-sm text-center leading-tight">Qualidade Água</span>
               </Button>
             </Link>
             <Link to="/health" className="block">
-              <Button variant="outline" className="w-full h-20 flex-col gap-2">
-                <Activity className="h-6 w-6" />
-                <span>Saúde Animal</span>
+              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
+                <Activity className="h-5 w-5 sm:h-6 sm:w-6" />
+                <span className="text-xs sm:text-sm text-center leading-tight">Saúde Animal</span>
               </Button>
             </Link>
             <Link to="/biometry" className="block">
-              <Button variant="outline" className="w-full h-20 flex-col gap-2">
-                <TrendingUp className="h-6 w-6" />
-                <span>Biometria</span>
+              <Button variant="outline" className="w-full h-16 sm:h-20 flex-col gap-1 sm:gap-2 p-2">
+                <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6" />
+                <span className="text-xs sm:text-sm text-center leading-tight">Biometria</span>
               </Button>
             </Link>
           </div>

@@ -1,4 +1,4 @@
-import PlaceholderPage from '@/components/PlaceholderPage'
+import PlaceholderPage from "@/components/PlaceholderPage";
 
 export default function Reports() {
   return (
@@ -6,5 +6,5 @@ export default function Reports() {
       title="Relatórios e Análises"
       description="Relatórios de produção, custos, performance e análises detalhadas. Continue prompting para implementar esta funcionalidade."
     />
-  )
+  );
 }

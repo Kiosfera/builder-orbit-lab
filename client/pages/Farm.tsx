@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { 
-  Building2, 
-  MapPin, 
-  Plus, 
+import { useState } from "react";
+import {
+  Building2,
+  MapPin,
+  Plus,
   Edit,
   Trash2,
   MoreHorizontal,
@@ -10,27 +10,33 @@ import {
   AlertTriangle,
   CheckCircle,
   Clock,
-  Lock
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from '@/components/ui/table'
+  Lock,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu";
 import {
   Dialog,
   DialogContent,
@@ -39,134 +45,134 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function Farm() {
-  const [isAddFarmOpen, setIsAddFarmOpen] = useState(false)
-  const [isAddNurseryOpen, setIsAddNurseryOpen] = useState(false)
+  const [isAddFarmOpen, setIsAddFarmOpen] = useState(false);
+  const [isAddNurseryOpen, setIsAddNurseryOpen] = useState(false);
 
   const farms = [
     {
       id: 1,
-      name: 'Fazenda São João',
-      location: 'São João da Barra, RJ',
-      area: '45 hectares',
+      name: "Fazenda São João",
+      location: "São João da Barra, RJ",
+      area: "45 hectares",
       nurseries: 12,
       activeNurseries: 8,
-      status: 'Ativa',
-      manager: 'João Silva'
+      status: "Ativa",
+      manager: "João Silva",
     },
     {
       id: 2,
-      name: 'Fazenda Santa Maria',
-      location: 'Campos dos Goytacazes, RJ',
-      area: '32 hectares',
+      name: "Fazenda Santa Maria",
+      location: "Campos dos Goytacazes, RJ",
+      area: "32 hectares",
       nurseries: 8,
       activeNurseries: 6,
-      status: 'Ativa',
-      manager: 'Maria Santos'
+      status: "Ativa",
+      manager: "Maria Santos",
     },
     {
       id: 3,
-      name: 'Fazenda Boa Vista',
-      location: 'Macaé, RJ',
-      area: '67 hectares',
+      name: "Fazenda Boa Vista",
+      location: "Macaé, RJ",
+      area: "67 hectares",
       nurseries: 15,
       activeNurseries: 10,
-      status: 'Manutenção',
-      manager: 'Pedro Costa'
-    }
-  ]
+      status: "Manutenção",
+      manager: "Pedro Costa",
+    },
+  ];
 
   const nurseries = [
     {
       id: 1,
-      name: 'Viveiro A-1',
-      farm: 'Fazenda São João',
-      area: '2,5 hectares',
-      depth: '1,8m',
-      status: 'Em Cultivo',
-      lotId: 'LT-2024-001',
-      population: '150.000 PLs',
-      hasActiveLot: true
+      name: "Viveiro A-1",
+      farm: "Fazenda São João",
+      area: "2,5 hectares",
+      depth: "1,8m",
+      status: "Em Cultivo",
+      lotId: "LT-2024-001",
+      population: "150.000 PLs",
+      hasActiveLot: true,
     },
     {
       id: 2,
-      name: 'Viveiro A-2',
-      farm: 'Fazenda São João',
-      area: '2,2 hectares',
-      depth: '1,6m',
-      status: 'Preparação',
+      name: "Viveiro A-2",
+      farm: "Fazenda São João",
+      area: "2,2 hectares",
+      depth: "1,6m",
+      status: "Preparação",
       lotId: null,
       population: null,
-      hasActiveLot: false
+      hasActiveLot: false,
     },
     {
       id: 3,
-      name: 'Viveiro B-1',
-      farm: 'Fazenda Santa Maria',
-      area: '3,0 hectares',
-      depth: '2,0m',
-      status: 'Em Cultivo',
-      lotId: 'LT-2024-002',
-      population: '180.000 PLs',
-      hasActiveLot: true
+      name: "Viveiro B-1",
+      farm: "Fazenda Santa Maria",
+      area: "3,0 hectares",
+      depth: "2,0m",
+      status: "Em Cultivo",
+      lotId: "LT-2024-002",
+      population: "180.000 PLs",
+      hasActiveLot: true,
     },
     {
       id: 4,
-      name: 'Viveiro B-2',
-      farm: 'Fazenda Santa Maria',
-      area: '2,8 hectares',
-      depth: '1,9m',
-      status: 'Disponível',
+      name: "Viveiro B-2",
+      farm: "Fazenda Santa Maria",
+      area: "2,8 hectares",
+      depth: "1,9m",
+      status: "Disponível",
       lotId: null,
       population: null,
-      hasActiveLot: false
+      hasActiveLot: false,
     },
     {
       id: 5,
-      name: 'Viveiro C-1',
-      farm: 'Fazenda Boa Vista',
-      area: '4,2 hectares',
-      depth: '2,2m',
-      status: 'Manutenção',
+      name: "Viveiro C-1",
+      farm: "Fazenda Boa Vista",
+      area: "4,2 hectares",
+      depth: "2,2m",
+      status: "Manutenção",
       lotId: null,
       population: null,
-      hasActiveLot: false
-    }
-  ]
+      hasActiveLot: false,
+    },
+  ];
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'Em Cultivo':
-        return <Fish className="h-4 w-4 text-blue-600" />
-      case 'Preparação':
-        return <Clock className="h-4 w-4 text-yellow-600" />
-      case 'Disponível':
-        return <CheckCircle className="h-4 w-4 text-green-600" />
-      case 'Manutenção':
-        return <AlertTriangle className="h-4 w-4 text-red-600" />
+      case "Em Cultivo":
+        return <Fish className="h-4 w-4 text-blue-600" />;
+      case "Preparação":
+        return <Clock className="h-4 w-4 text-yellow-600" />;
+      case "Disponível":
+        return <CheckCircle className="h-4 w-4 text-green-600" />;
+      case "Manutenção":
+        return <AlertTriangle className="h-4 w-4 text-red-600" />;
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'Em Cultivo':
-        return <Badge className="bg-blue-100 text-blue-800">{status}</Badge>
-      case 'Preparação':
-        return <Badge variant="secondary">{status}</Badge>
-      case 'Disponível':
-        return <Badge className="bg-green-100 text-green-800">{status}</Badge>
-      case 'Manutenção':
-        return <Badge variant="destructive">{status}</Badge>
+      case "Em Cultivo":
+        return <Badge className="bg-blue-100 text-blue-800">{status}</Badge>;
+      case "Preparação":
+        return <Badge variant="secondary">{status}</Badge>;
+      case "Disponível":
+        return <Badge className="bg-green-100 text-green-800">{status}</Badge>;
+      case "Manutenção":
+        return <Badge variant="destructive">{status}</Badge>;
       default:
-        return <Badge variant="outline">{status}</Badge>
+        return <Badge variant="outline">{status}</Badge>;
     }
-  }
+  };
 
   return (
     <div className="space-y-6">
@@ -202,8 +208,10 @@ export default function Farm() {
                   <Label htmlFor="nursery-farm">Fazenda</Label>
                   <select className="w-full p-2 border rounded-md">
                     <option value="">Selecione a fazenda</option>
-                    {farms.map(farm => (
-                      <option key={farm.id} value={farm.id}>{farm.name}</option>
+                    {farms.map((farm) => (
+                      <option key={farm.id} value={farm.id}>
+                        {farm.name}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -219,11 +227,17 @@ export default function Farm() {
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="nursery-notes">Observações</Label>
-                  <Textarea id="nursery-notes" placeholder="Informações adicionais..." />
+                  <Textarea
+                    id="nursery-notes"
+                    placeholder="Informações adicionais..."
+                  />
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" onClick={() => setIsAddNurseryOpen(false)}>
+                <Button
+                  type="submit"
+                  onClick={() => setIsAddNurseryOpen(false)}
+                >
                   Cadastrar Viveiro
                 </Button>
               </DialogFooter>
@@ -246,7 +260,10 @@ export default function Farm() {
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
                   <Label htmlFor="farm-name">Nome da Fazenda</Label>
-                  <Input id="farm-name" placeholder="Ex: Fazenda Águas Claras" />
+                  <Input
+                    id="farm-name"
+                    placeholder="Ex: Fazenda Águas Claras"
+                  />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="farm-location">Localização</Label>
@@ -262,7 +279,10 @@ export default function Farm() {
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="farm-notes">Observações</Label>
-                  <Textarea id="farm-notes" placeholder="Informações adicionais..." />
+                  <Textarea
+                    id="farm-notes"
+                    placeholder="Informações adicionais..."
+                  />
                 </div>
               </div>
               <DialogFooter>
@@ -279,38 +299,38 @@ export default function Farm() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total de Fazendas</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Total de Fazendas
+            </CardTitle>
             <Building2 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">3</div>
-            <p className="text-xs text-muted-foreground">
-              144 hectares totais
-            </p>
+            <p className="text-xs text-muted-foreground">144 hectares totais</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Viveiros Totais</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Viveiros Totais
+            </CardTitle>
             <Fish className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">35</div>
-            <p className="text-xs text-muted-foreground">
-              24 em produção
-            </p>
+            <p className="text-xs text-muted-foreground">24 em produção</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Taxa de Ocupação</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Taxa de Ocupação
+            </CardTitle>
             <CheckCircle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">68%</div>
-            <p className="text-xs text-muted-foreground">
-              24 de 35 viveiros
-            </p>
+            <p className="text-xs text-muted-foreground">24 de 35 viveiros</p>
           </CardContent>
         </Card>
         <Card>
@@ -382,9 +402,7 @@ export default function Farm() {
                           {farm.activeNurseries}/{farm.nurseries} ativos
                         </span>
                       </TableCell>
-                      <TableCell>
-                        {getStatusBadge(farm.status)}
-                      </TableCell>
+                      <TableCell>{getStatusBadge(farm.status)}</TableCell>
                       <TableCell>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -462,9 +480,7 @@ export default function Farm() {
                           </p>
                         </div>
                       </TableCell>
-                      <TableCell>
-                        {getStatusBadge(nursery.status)}
-                      </TableCell>
+                      <TableCell>{getStatusBadge(nursery.status)}</TableCell>
                       <TableCell>
                         {nursery.lotId ? (
                           <div className="text-sm">
@@ -474,7 +490,9 @@ export default function Farm() {
                             </p>
                           </div>
                         ) : (
-                          <span className="text-sm text-muted-foreground">-</span>
+                          <span className="text-sm text-muted-foreground">
+                            -
+                          </span>
                         )}
                       </TableCell>
                       <TableCell>
@@ -493,7 +511,7 @@ export default function Farm() {
                               <Fish className="h-4 w-4 mr-2" />
                               Historico
                             </DropdownMenuItem>
-                            <DropdownMenuItem 
+                            <DropdownMenuItem
                               className="text-destructive"
                               disabled={nursery.hasActiveLot}
                             >
@@ -512,5 +530,5 @@ export default function Farm() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

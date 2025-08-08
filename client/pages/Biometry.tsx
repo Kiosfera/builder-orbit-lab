@@ -1,6 +1,6 @@
-import { useState } from "react";
-import {
-  Scale,
+import { useState } from 'react'
+import { 
+  Scale, 
   TrendingUp,
   Target,
   BarChart3,
@@ -9,27 +9,21 @@ import {
   Calendar,
   Download,
   RefreshCw,
-  Activity,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+  Activity
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Badge } from '@/components/ui/badge'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableHead, 
+  TableHeader, 
+  TableRow 
+} from '@/components/ui/table'
 import {
   Dialog,
   DialogContent,
@@ -38,204 +32,200 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import {
+} from '@/components/ui/dialog'
+import { Label } from '@/components/ui/label'
+import { 
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Progress } from "@/components/ui/progress";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/select'
+import { Progress } from '@/components/ui/progress'
+import { Textarea } from '@/components/ui/textarea'
 
 export default function Biometry() {
-  const [isAddMeasurementOpen, setIsAddMeasurementOpen] = useState(false);
-  const [selectedNursery, setSelectedNursery] = useState("all");
+  const [isAddMeasurementOpen, setIsAddMeasurementOpen] = useState(false)
+  const [selectedNursery, setSelectedNursery] = useState('all')
 
   const currentBiometry = [
     {
-      nursery: "Viveiro A-1",
-      farm: "Fazenda São João",
+      nursery: 'Viveiro A-1',
+      farm: 'Fazenda São João',
       population: 148500,
       averageWeight: 16.8,
       biomass: 2495,
       uniformity: 85,
-      lastMeasurement: "2024-01-12",
+      lastMeasurement: '2024-01-12',
       weeklyGrowth: 0.8, // g/week
-      estimatedHarvest: "2024-03-15",
-      target: 35.0, // g
+      estimatedHarvest: '2024-03-15',
+      target: 35.0 // g
     },
     {
-      nursery: "Viveiro A-2",
-      farm: "Fazenda São João",
+      nursery: 'Viveiro A-2',
+      farm: 'Fazenda São João', 
       population: 95600,
       averageWeight: 12.4,
       biomass: 1185,
       uniformity: 92,
-      lastMeasurement: "2024-01-14",
+      lastMeasurement: '2024-01-14',
       weeklyGrowth: 1.2,
-      estimatedHarvest: "2024-03-28",
-      target: 30.0,
+      estimatedHarvest: '2024-03-28',
+      target: 30.0
     },
     {
-      nursery: "Viveiro B-1",
-      farm: "Fazenda Santa Maria",
+      nursery: 'Viveiro B-1',
+      farm: 'Fazenda Santa Maria',
       population: 175200,
       averageWeight: 28.3,
       biomass: 4959,
       uniformity: 78,
-      lastMeasurement: "2024-01-13",
+      lastMeasurement: '2024-01-13',
       weeklyGrowth: 0.6,
-      estimatedHarvest: "2024-02-20",
-      target: 35.0,
+      estimatedHarvest: '2024-02-20',
+      target: 35.0
     },
     {
-      nursery: "Viveiro C-1",
-      farm: "Fazenda Boa Vista",
+      nursery: 'Viveiro C-1',
+      farm: 'Fazenda Boa Vista',
       population: 142800,
       averageWeight: 22.1,
       biomass: 3156,
       uniformity: 88,
-      lastMeasurement: "2024-01-11",
+      lastMeasurement: '2024-01-11',
       weeklyGrowth: 0.9,
-      estimatedHarvest: "2024-03-05",
-      target: 32.0,
-    },
-  ];
+      estimatedHarvest: '2024-03-05',
+      target: 32.0
+    }
+  ]
 
   const measurementHistory = [
     {
       id: 1,
-      nursery: "Viveiro A-1",
-      date: "2024-01-12",
+      nursery: 'Viveiro A-1',
+      date: '2024-01-12',
       week: 8,
       sampleSize: 250,
       averageWeight: 16.8,
-      weightRange: "14.2 - 19.5",
+      weightRange: '14.2 - 19.5',
       uniformity: 85,
       biomass: 2495,
-      operator: "Dr. Ana Costa",
-      notes: "Crescimento dentro do esperado. Boa uniformidade.",
+      operator: 'Dr. Ana Costa',
+      notes: 'Crescimento dentro do esperado. Boa uniformidade.'
     },
     {
       id: 2,
-      nursery: "Viveiro B-1",
-      date: "2024-01-13",
+      nursery: 'Viveiro B-1',
+      date: '2024-01-13',
       week: 12,
       sampleSize: 300,
       averageWeight: 28.3,
-      weightRange: "24.1 - 32.8",
+      weightRange: '24.1 - 32.8',
       uniformity: 78,
       biomass: 4959,
-      operator: "Dr. Ana Costa",
-      notes: "Variação de peso acima do ideal. Considerar classificação.",
+      operator: 'Dr. Ana Costa',
+      notes: 'Variação de peso acima do ideal. Considerar classificação.'
     },
     {
       id: 3,
-      nursery: "Viveiro A-2",
-      date: "2024-01-14",
+      nursery: 'Viveiro A-2',
+      date: '2024-01-14',
       week: 6,
       sampleSize: 200,
       averageWeight: 12.4,
-      weightRange: "10.8 - 14.2",
+      weightRange: '10.8 - 14.2',
       uniformity: 92,
       biomass: 1185,
-      operator: "Maria Santos",
-      notes: "Excelente uniformidade. Crescimento acelerado.",
+      operator: 'Maria Santos',
+      notes: 'Excelente uniformidade. Crescimento acelerado.'
     },
     {
       id: 4,
-      nursery: "Viveiro C-1",
-      date: "2024-01-11",
+      nursery: 'Viveiro C-1',
+      date: '2024-01-11',
       week: 10,
       sampleSize: 280,
       averageWeight: 22.1,
-      weightRange: "19.5 - 25.2",
+      weightRange: '19.5 - 25.2',
       uniformity: 88,
       biomass: 3156,
-      operator: "Pedro Costa",
-      notes: "Crescimento consistente. Boa resposta ao manejo nutricional.",
-    },
-  ];
+      operator: 'Pedro Costa',
+      notes: 'Crescimento consistente. Boa resposta ao manejo nutricional.'
+    }
+  ]
 
   const growthProjections = [
     {
-      nursery: "Viveiro A-1",
+      nursery: 'Viveiro A-1',
       currentWeight: 16.8,
       targetWeight: 35.0,
       weeksRemaining: 11,
       requiredGrowth: 1.7, // g/week
       currentGrowth: 0.8,
-      status: "Abaixo do esperado",
+      status: 'Abaixo do esperado'
     },
     {
-      nursery: "Viveiro A-2",
+      nursery: 'Viveiro A-2',
       currentWeight: 12.4,
       targetWeight: 30.0,
       weeksRemaining: 10,
       requiredGrowth: 1.8,
       currentGrowth: 1.2,
-      status: "Abaixo do esperado",
+      status: 'Abaixo do esperado'
     },
     {
-      nursery: "Viveiro B-1",
+      nursery: 'Viveiro B-1',
       currentWeight: 28.3,
       targetWeight: 35.0,
       weeksRemaining: 5,
       requiredGrowth: 1.3,
       currentGrowth: 0.6,
-      status: "Crítico",
+      status: 'Crítico'
     },
     {
-      nursery: "Viveiro C-1",
+      nursery: 'Viveiro C-1',
       currentWeight: 22.1,
       targetWeight: 32.0,
       weeksRemaining: 7,
       requiredGrowth: 1.4,
       currentGrowth: 0.9,
-      status: "Atenção",
-    },
-  ];
+      status: 'Atenção'
+    }
+  ]
 
   const calculateBiomass = (population: number, averageWeight: number) => {
-    return (population * averageWeight) / 1000; // Convert to kg
-  };
+    return (population * averageWeight) / 1000 // Convert to kg
+  }
 
   const getUniformityColor = (uniformity: number) => {
-    if (uniformity >= 90) return "text-green-600";
-    if (uniformity >= 80) return "text-blue-600";
-    if (uniformity >= 70) return "text-yellow-600";
-    return "text-red-600";
-  };
+    if (uniformity >= 90) return 'text-green-600'
+    if (uniformity >= 80) return 'text-blue-600'
+    if (uniformity >= 70) return 'text-yellow-600'
+    return 'text-red-600'
+  }
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "No prazo":
-        return <Badge className="bg-green-100 text-green-800">{status}</Badge>;
-      case "Atenção":
-        return (
-          <Badge className="bg-yellow-100 text-yellow-800">{status}</Badge>
-        );
-      case "Abaixo do esperado":
-        return (
-          <Badge className="bg-orange-100 text-orange-800">{status}</Badge>
-        );
-      case "Crítico":
-        return <Badge variant="destructive">{status}</Badge>;
+      case 'No prazo':
+        return <Badge className="bg-green-100 text-green-800">{status}</Badge>
+      case 'Atenção':
+        return <Badge className="bg-yellow-100 text-yellow-800">{status}</Badge>
+      case 'Abaixo do esperado':
+        return <Badge className="bg-orange-100 text-orange-800">{status}</Badge>
+      case 'Crítico':
+        return <Badge variant="destructive">{status}</Badge>
       default:
-        return <Badge variant="outline">{status}</Badge>;
+        return <Badge variant="outline">{status}</Badge>
     }
-  };
+  }
 
   const getProgressColor = (current: number, required: number) => {
-    const ratio = current / required;
-    if (ratio >= 1) return "bg-green-500";
-    if (ratio >= 0.8) return "bg-blue-500";
-    if (ratio >= 0.6) return "bg-yellow-500";
-    return "bg-red-500";
-  };
+    const ratio = current / required
+    if (ratio >= 1) return 'bg-green-500'
+    if (ratio >= 0.8) return 'bg-blue-500'
+    if (ratio >= 0.6) return 'bg-yellow-500'
+    return 'bg-red-500'
+  }
 
   return (
     <div className="space-y-6">
@@ -248,10 +238,7 @@ export default function Biometry() {
           </p>
         </div>
         <div className="flex gap-3 mt-4 lg:mt-0">
-          <Dialog
-            open={isAddMeasurementOpen}
-            onOpenChange={setIsAddMeasurementOpen}
-          >
+          <Dialog open={isAddMeasurementOpen} onOpenChange={setIsAddMeasurementOpen}>
             <DialogTrigger asChild>
               <Button>
                 <Plus className="h-4 w-4 mr-2" />
@@ -282,10 +269,10 @@ export default function Biometry() {
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="bio-date">Data da Medição</Label>
-                    <Input
-                      id="bio-date"
-                      type="date"
-                      defaultValue={new Date().toISOString().split("T")[0]}
+                    <Input 
+                      id="bio-date" 
+                      type="date" 
+                      defaultValue={new Date().toISOString().split('T')[0]} 
                     />
                   </div>
                 </div>
@@ -296,57 +283,30 @@ export default function Biometry() {
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="avg-weight">Peso Médio (g)</Label>
-                    <Input
-                      id="avg-weight"
-                      placeholder="16.8"
-                      step="0.1"
-                      type="number"
-                    />
+                    <Input id="avg-weight" placeholder="16.8" step="0.1" type="number" />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="uniformity">Uniformidade (%)</Label>
-                    <Input
-                      id="uniformity"
-                      placeholder="85"
-                      type="number"
-                      min="0"
-                      max="100"
-                    />
+                    <Input id="uniformity" placeholder="85" type="number" min="0" max="100" />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="grid gap-2">
                     <Label htmlFor="min-weight">Peso Mínimo (g)</Label>
-                    <Input
-                      id="min-weight"
-                      placeholder="14.2"
-                      step="0.1"
-                      type="number"
-                    />
+                    <Input id="min-weight" placeholder="14.2" step="0.1" type="number" />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="max-weight">Peso Máximo (g)</Label>
-                    <Input
-                      id="max-weight"
-                      placeholder="19.5"
-                      step="0.1"
-                      type="number"
-                    />
+                    <Input id="max-weight" placeholder="19.5" step="0.1" type="number" />
                   </div>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="bio-notes">Observações</Label>
-                  <Textarea
-                    id="bio-notes"
-                    placeholder="Observações sobre a amostra, crescimento..."
-                  />
+                  <Textarea id="bio-notes" placeholder="Observações sobre a amostra, crescimento..." />
                 </div>
               </div>
               <DialogFooter>
-                <Button
-                  type="submit"
-                  onClick={() => setIsAddMeasurementOpen(false)}
-                >
+                <Button type="submit" onClick={() => setIsAddMeasurementOpen(false)}>
                   Registrar Biometria
                 </Button>
               </DialogFooter>
@@ -364,24 +324,22 @@ export default function Biometry() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Biomassa Total
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Biomassa Total</CardTitle>
             <Scale className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">11.8 ton</div>
-            <p className="text-xs text-muted-foreground">+280kg esta semana</p>
+            <p className="text-xs text-muted-foreground">
+              +280kg esta semana
+            </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Peso Médio Geral
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Peso Médio Geral</CardTitle>
             <Target className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -393,26 +351,26 @@ export default function Biometry() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Uniformidade Média
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Uniformidade Média</CardTitle>
             <BarChart3 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">86%</div>
-            <p className="text-xs text-muted-foreground">Dentro do aceitável</p>
+            <p className="text-xs text-muted-foreground">
+              Dentro do aceitável
+            </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Taxa Crescimento
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Taxa Crescimento</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">0.9g/sem</div>
-            <p className="text-xs text-muted-foreground">Média dos viveiros</p>
+            <p className="text-xs text-muted-foreground">
+              Média dos viveiros
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -436,73 +394,44 @@ export default function Biometry() {
                     </div>
                     <div>
                       <h4 className="font-medium">{data.nursery}</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {data.farm}
-                      </p>
+                      <p className="text-sm text-muted-foreground">{data.farm}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-muted-foreground">
-                      Última medição
-                    </p>
-                    <p className="text-sm font-medium">
-                      {data.lastMeasurement}
-                    </p>
+                    <p className="text-sm text-muted-foreground">Última medição</p>
+                    <p className="text-sm font-medium">{data.lastMeasurement}</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-4">
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground mb-1">
-                      População
-                    </p>
-                    <p className="text-lg font-medium">
-                      {data.population.toLocaleString()}
-                    </p>
+                    <p className="text-sm text-muted-foreground mb-1">População</p>
+                    <p className="text-lg font-medium">{data.population.toLocaleString()}</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground mb-1">
-                      Peso Médio
-                    </p>
+                    <p className="text-sm text-muted-foreground mb-1">Peso Médio</p>
                     <p className="text-lg font-medium">{data.averageWeight}g</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground mb-1">
-                      Biomassa
-                    </p>
-                    <p className="text-lg font-medium">
-                      {data.biomass.toLocaleString()}kg
-                    </p>
+                    <p className="text-sm text-muted-foreground mb-1">Biomassa</p>
+                    <p className="text-lg font-medium">{data.biomass.toLocaleString()}kg</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground mb-1">
-                      Uniformidade
-                    </p>
-                    <p
-                      className={`text-lg font-medium ${getUniformityColor(data.uniformity)}`}
-                    >
+                    <p className="text-sm text-muted-foreground mb-1">Uniformidade</p>
+                    <p className={`text-lg font-medium ${getUniformityColor(data.uniformity)}`}>
                       {data.uniformity}%
                     </p>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground mb-1">
-                      Crescimento
-                    </p>
-                    <p className="text-lg font-medium">
-                      {data.weeklyGrowth}g/sem
-                    </p>
+                    <p className="text-sm text-muted-foreground mb-1">Crescimento</p>
+                    <p className="text-lg font-medium">{data.weeklyGrowth}g/sem</p>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Progresso para meta ({data.target}g)</span>
-                    <span>
-                      {Math.round((data.averageWeight / data.target) * 100)}%
-                    </span>
+                    <span>{Math.round((data.averageWeight / data.target) * 100)}%</span>
                   </div>
-                  <Progress
-                    value={(data.averageWeight / data.target) * 100}
-                    className="h-2"
-                  />
+                  <Progress value={(data.averageWeight / data.target) * 100} className="h-2" />
                   <div className="flex justify-between text-xs text-muted-foreground">
                     <span>Previsão de despesca: {data.estimatedHarvest}</span>
                     <span>Meta: {data.target}g</span>
@@ -532,10 +461,7 @@ export default function Biometry() {
                     Registro completo das biometrias realizadas
                   </CardDescription>
                 </div>
-                <Select
-                  value={selectedNursery}
-                  onValueChange={setSelectedNursery}
-                >
+                <Select value={selectedNursery} onValueChange={setSelectedNursery}>
                   <SelectTrigger className="w-40">
                     <SelectValue />
                   </SelectTrigger>
@@ -566,31 +492,17 @@ export default function Biometry() {
                 <TableBody>
                   {measurementHistory.map((measurement) => (
                     <TableRow key={measurement.id}>
-                      <TableCell className="text-sm">
-                        {measurement.date}
-                      </TableCell>
-                      <TableCell className="font-medium">
-                        {measurement.nursery}
-                      </TableCell>
+                      <TableCell className="text-sm">{measurement.date}</TableCell>
+                      <TableCell className="font-medium">{measurement.nursery}</TableCell>
                       <TableCell>{measurement.week}</TableCell>
                       <TableCell>{measurement.sampleSize}</TableCell>
-                      <TableCell className="font-medium">
-                        {measurement.averageWeight}g
-                      </TableCell>
-                      <TableCell className="text-sm">
-                        {measurement.weightRange}g
-                      </TableCell>
-                      <TableCell
-                        className={getUniformityColor(measurement.uniformity)}
-                      >
+                      <TableCell className="font-medium">{measurement.averageWeight}g</TableCell>
+                      <TableCell className="text-sm">{measurement.weightRange}g</TableCell>
+                      <TableCell className={getUniformityColor(measurement.uniformity)}>
                         {measurement.uniformity}%
                       </TableCell>
-                      <TableCell>
-                        {measurement.biomass.toLocaleString()}kg
-                      </TableCell>
-                      <TableCell className="text-sm">
-                        {measurement.operator}
-                      </TableCell>
+                      <TableCell>{measurement.biomass.toLocaleString()}kg</TableCell>
+                      <TableCell className="text-sm">{measurement.operator}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -627,60 +539,36 @@ export default function Biometry() {
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                       <div>
-                        <p className="text-sm text-muted-foreground">
-                          Peso Atual
-                        </p>
-                        <p className="text-lg font-medium">
-                          {projection.currentWeight}g
-                        </p>
+                        <p className="text-sm text-muted-foreground">Peso Atual</p>
+                        <p className="text-lg font-medium">{projection.currentWeight}g</p>
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Meta</p>
-                        <p className="text-lg font-medium">
-                          {projection.targetWeight}g
-                        </p>
+                        <p className="text-lg font-medium">{projection.targetWeight}g</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">
-                          Crescimento Atual
-                        </p>
-                        <p className="text-lg font-medium">
-                          {projection.currentGrowth}g/sem
-                        </p>
+                        <p className="text-sm text-muted-foreground">Crescimento Atual</p>
+                        <p className="text-lg font-medium">{projection.currentGrowth}g/sem</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">
-                          Necessário
-                        </p>
-                        <p className="text-lg font-medium text-red-600">
-                          {projection.requiredGrowth}g/sem
-                        </p>
+                        <p className="text-sm text-muted-foreground">Necessário</p>
+                        <p className="text-lg font-medium text-red-600">{projection.requiredGrowth}g/sem</p>
                       </div>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span>Progresso de crescimento</span>
-                        <span>
-                          {Math.round(
-                            (projection.currentGrowth /
-                              projection.requiredGrowth) *
-                              100,
-                          )}
-                          %
-                        </span>
+                        <span>{Math.round((projection.currentGrowth / projection.requiredGrowth) * 100)}%</span>
                       </div>
-                      <Progress
-                        value={
-                          (projection.currentGrowth /
-                            projection.requiredGrowth) *
-                          100
-                        }
+                      <Progress 
+                        value={(projection.currentGrowth / projection.requiredGrowth) * 100} 
                         className="h-2"
                       />
                       <div className="text-xs text-muted-foreground">
-                        {projection.currentGrowth < projection.requiredGrowth
-                          ? `Déficit de ${(projection.requiredGrowth - projection.currentGrowth).toFixed(1)}g/sem`
-                          : "Crescimento adequado"}
+                        {projection.currentGrowth < projection.requiredGrowth ? 
+                          `Déficit de ${(projection.requiredGrowth - projection.currentGrowth).toFixed(1)}g/sem` :
+                          'Crescimento adequado'
+                        }
                       </div>
                     </div>
                   </div>
@@ -715,7 +603,7 @@ export default function Biometry() {
                 </div>
               </CardContent>
             </Card>
-
+            
             <Card>
               <CardHeader>
                 <CardTitle>Evolução da Biomassa</CardTitle>
@@ -726,10 +614,7 @@ export default function Biometry() {
               <CardContent>
                 <div className="space-y-4">
                   {currentBiometry.map((data, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-between"
-                    >
+                    <div key={index} className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">{data.nursery}</p>
                         <p className="text-sm text-muted-foreground">
@@ -737,19 +622,10 @@ export default function Biometry() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-lg font-medium">
-                          {data.biomass.toLocaleString()}kg
-                        </p>
+                        <p className="text-lg font-medium">{data.biomass.toLocaleString()}kg</p>
                         <div className="flex items-center gap-1 text-xs text-green-600">
                           <TrendingUp className="h-3 w-3" />
-                          <span>
-                            +
-                            {(
-                              (data.weeklyGrowth * data.population) /
-                              1000
-                            ).toFixed(0)}
-                            kg/sem
-                          </span>
+                          <span>+{(data.weeklyGrowth * data.population / 1000).toFixed(0)}kg/sem</span>
                         </div>
                       </div>
                     </div>
@@ -761,5 +637,5 @@ export default function Biometry() {
         </TabsContent>
       </Tabs>
     </div>
-  );
+  )
 }

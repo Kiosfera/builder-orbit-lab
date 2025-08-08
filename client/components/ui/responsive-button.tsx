@@ -1,10 +1,10 @@
-import React from 'react'
-import { Button, ButtonProps } from './button'
-import { cn } from '@/lib/utils'
+import React from "react";
+import { Button, ButtonProps } from "./button";
+import { cn } from "@/lib/utils";
 
 interface ResponsiveButtonProps extends ButtonProps {
-  mobileText?: string
-  fullWidthOnMobile?: boolean
+  mobileText?: string;
+  fullWidthOnMobile?: boolean;
 }
 
 export function ResponsiveButton({
@@ -16,10 +16,7 @@ export function ResponsiveButton({
 }: ResponsiveButtonProps) {
   return (
     <Button
-      className={cn(
-        fullWidthOnMobile && 'w-full sm:w-auto',
-        className
-      )}
+      className={cn(fullWidthOnMobile && "w-full sm:w-auto", className)}
       {...props}
     >
       {mobileText ? (
@@ -31,7 +28,7 @@ export function ResponsiveButton({
         children
       )}
     </Button>
-  )
+  );
 }
 
-export default ResponsiveButton
+export default ResponsiveButton;

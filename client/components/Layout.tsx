@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import * as React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useState } from "react";
+import * as React from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   Fish,
   Users,
@@ -19,45 +19,45 @@ import {
   Scale,
   Monitor,
   CheckSquare,
-  Archive
-} from 'lucide-react'
-import { Button } from './ui/button'
-import { cn } from '@/lib/utils'
+  Archive,
+} from "lucide-react";
+import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 interface LayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 interface NavigationItem {
-  name: string
-  href: string
-  icon: React.ComponentType<any>
+  name: string;
+  href: string;
+  icon: React.ComponentType<any>;
 }
 
 const navigation: NavigationItem[] = [
-  { name: 'Dashboard', href: '/', icon: Home },
-  { name: 'Autenticação', href: '/auth', icon: Users },
-  { name: 'Minha Fazenda', href: '/farm', icon: Building2 },
-  { name: 'Povoamento', href: '/stocking', icon: Fish },
-  { name: 'Estoque', href: '/inventory', icon: Package },
-  { name: 'Arraçoamento', href: '/feeding', icon: Utensils },
-  { name: 'Qualidade da Água', href: '/water-quality', icon: Droplets },
-  { name: 'Saúde Animal', href: '/health', icon: Heart },
-  { name: 'Biometria', href: '/biometry', icon: Scale },
-  { name: 'Monitoramento', href: '/monitoring', icon: Monitor },
-  { name: 'Tarefas', href: '/tasks', icon: CheckSquare },
-  { name: 'Histórico de Ciclos', href: '/cycle-history', icon: Archive },
-  { name: 'Relatórios', href: '/reports', icon: TrendingUp },
-]
+  { name: "Dashboard", href: "/", icon: Home },
+  { name: "Autenticação", href: "/auth", icon: Users },
+  { name: "Minha Fazenda", href: "/farm", icon: Building2 },
+  { name: "Povoamento", href: "/stocking", icon: Fish },
+  { name: "Estoque", href: "/inventory", icon: Package },
+  { name: "Arraçoamento", href: "/feeding", icon: Utensils },
+  { name: "Qualidade da Água", href: "/water-quality", icon: Droplets },
+  { name: "Saúde Animal", href: "/health", icon: Heart },
+  { name: "Biometria", href: "/biometry", icon: Scale },
+  { name: "Monitoramento", href: "/monitoring", icon: Monitor },
+  { name: "Tarefas", href: "/tasks", icon: CheckSquare },
+  { name: "Histórico de Ciclos", href: "/cycle-history", icon: Archive },
+  { name: "Relatórios", href: "/reports", icon: TrendingUp },
+];
 
 export default function Layout({ children }: LayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const location = useLocation()
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
 
   // Close sidebar when route changes on mobile
   React.useEffect(() => {
-    setSidebarOpen(false)
-  }, [location.pathname])
+    setSidebarOpen(false);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -74,7 +74,9 @@ export default function Layout({ children }: LayoutProps) {
               <div className="flex items-center justify-between p-6 border-b border-border">
                 <div className="flex items-center gap-2">
                   <Fish className="h-8 w-8 text-primary" />
-                  <span className="text-xl font-bold text-primary">AquaFarm</span>
+                  <span className="text-xl font-bold text-primary">
+                    AquaFarm
+                  </span>
                 </div>
                 <Button
                   variant="ghost"
@@ -95,7 +97,7 @@ export default function Layout({ children }: LayoutProps) {
                       "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
                       location.pathname === item.href
                         ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                        : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
                     )}
                   >
                     <item.icon className="h-5 w-5 flex-shrink-0" />
@@ -112,7 +114,9 @@ export default function Layout({ children }: LayoutProps) {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="font-medium text-sm">Gestor</p>
-                    <p className="text-xs text-muted-foreground truncate">gestor@fazenda.com</p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      gestor@fazenda.com
+                    </p>
                   </div>
                 </div>
               </div>
@@ -137,7 +141,7 @@ export default function Layout({ children }: LayoutProps) {
                   "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                   location.pathname === item.href
                     ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
                 )}
               >
                 <item.icon className="h-4 w-4 flex-shrink-0" />
@@ -152,7 +156,9 @@ export default function Layout({ children }: LayoutProps) {
               </div>
               <div className="min-w-0 flex-1">
                 <p className="font-medium">Gestor</p>
-                <p className="text-xs text-muted-foreground truncate">gestor@fazenda.com</p>
+                <p className="text-xs text-muted-foreground truncate">
+                  gestor@fazenda.com
+                </p>
               </div>
             </div>
           </div>
@@ -174,7 +180,8 @@ export default function Layout({ children }: LayoutProps) {
                 <Menu className="h-5 w-5" />
               </Button>
               <h1 className="text-lg sm:text-xl font-semibold text-foreground truncate">
-                {navigation.find(item => item.href === location.pathname)?.name || 'Dashboard'}
+                {navigation.find((item) => item.href === location.pathname)
+                  ?.name || "Dashboard"}
               </h1>
             </div>
             <div className="flex items-center gap-1 sm:gap-2">
@@ -196,11 +203,9 @@ export default function Layout({ children }: LayoutProps) {
 
         {/* Page content */}
         <main className="p-3 sm:p-4 lg:p-6 pb-safe">
-          <div className="max-w-7xl mx-auto">
-            {children}
-          </div>
+          <div className="max-w-7xl mx-auto">{children}</div>
         </main>
       </div>
     </div>
-  )
+  );
 }

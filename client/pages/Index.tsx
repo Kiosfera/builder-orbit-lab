@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom'
-import { 
-  Fish, 
-  Users, 
-  Building2, 
-  Package, 
+import {
+  Fish,
+  Users,
+  Building2,
+  Package,
   TrendingUp,
   AlertTriangle,
   CheckCircle,
   Clock,
-  DollarSign
+  DollarSign,
+  Droplets,
+  Activity
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
